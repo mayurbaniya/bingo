@@ -191,7 +191,7 @@ document.getElementById('confirmPaymentBtn').addEventListener('click', function 
   } else {
 
     registerAndPayLater();
-   
+
 
 
   }
@@ -221,23 +221,9 @@ document.getElementById('paymentProofForm').addEventListener('submit', function 
     showNotification('Please select a payment proof file');
     return;
   }
+  registerAndUploadPayment(file);
 
 
-
-  const message = `<h2>Registration Complete ✅</h2>
-    <p>
-      Your registration is complete, and your payment is currently under verification.<br>
-      Verification may take up to <strong>2 hours</strong>. You will receive a confirmation email once it’s processed.<br><br>
-      For faster confirmation, you can message us on WhatsApp by clicking the icon below.
-    </p>
-    <a class="whatsapp-btn" href="https://wa.me/918123456789" target="_blank">
-      <img width="24" height="24" class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-      Message Us
-    </a>`;
-
-  showBlockingModal(message, function () {
-    location.reload(true);
-  });
 });
 
 function registerAndGetQr() {
@@ -252,6 +238,8 @@ function registerAndGetQr() {
       payNow: true,
       tickets: $('#ticket-count').text()
     }),
+    beforeSend: showPageLoader,
+    complete: hidePageLoader,
     success: function (response) {
       $('#qrCodePlaceholder').attr('src', response.data.paymentQrBase64);
       $('.upi-button').attr('href', response.data.upiUri);
@@ -261,6 +249,48 @@ function registerAndGetQr() {
     }
   });
 }
+
+
+function registerAndUploadPayment(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+  $.ajax({
+    url: `${userBaseUrl}/add-payment-proof?phone=${$('#phone').val()}&email=${$('#email').val()}`, // Replace with your actual endpoint
+    type: 'POST',
+    processData: false,
+    contentType: false,
+    data: formData,
+    beforeSend: showPageLoader,
+    complete: hidePageLoader,
+    success: function (response) {
+      if (response.status === 'SUCCESS') {
+
+        const message = `<h2>Registration Complete ✅</h2>
+                          <p>
+                            Your registration is complete, and your payment is currently under verification.<br>
+                            Verification may take up to <strong>2 hours</strong>. You will receive a confirmation email once it’s processed.<br><br>
+                            For faster confirmation, you can message us on WhatsApp by clicking the icon below.
+                          </p>
+                          <a class="whatsapp-btn" href="https://wa.me/918123456789" target="_blank">
+                            <img width="24" height="24" class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                            Message Us
+                          </a>`;
+
+        showBlockingModal(message, function () {
+          location.reload(true);
+        });
+      }else{
+         showBlockingModal(response.msg, function () {
+          location.reload(true);
+        });
+      }
+    },
+    error: function (xhr, status, error) {
+      alert('something went wrong:', error);
+    }
+  });
+}
+
 
 function registerAndPayLater() {
   $.ajax({
@@ -274,10 +304,14 @@ function registerAndPayLater() {
       payNow: false,
       tickets: $('#ticket-count').text()
     }),
+    beforeSend: showPageLoader,
+    complete: hidePageLoader,
     success: function (response) {
-       showBlockingModal("Registration completed successfully! You can pay at the venue.", function () {
-      location.reload(true);
-    });
+
+      showBlockingModal(response.msg, function () {
+        location.reload(true);
+      });
+
     },
     error: function (xhr, status, error) {
       alert('something went wrong:', error);
@@ -387,7 +421,7 @@ $(document).on('keypress paste change', '.mob-only', function (e) {
       return false;
     }
   } else if (e.type == "change") {
-      console.log('..')
+    console.log('..')
     if (!this.value.match(/^[6-9]{1}[0-9]{9}$/)) {
       this.value = '';
       return false;
@@ -438,9 +472,23 @@ $(document).on('change keypress paste', '.email-only', function (e) {
 });
 
 
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      document.querySelector('.loading-overlay').style.opacity = '0';
-      document.querySelector('.loading-overlay').style.visibility = 'hidden';
-    }, 500); // slight delay for smoother transition
-  });
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    document.querySelector('.loading-overlay').style.opacity = '0';
+    document.querySelector('.loading-overlay').style.visibility = 'hidden';
+  }, 500); // slight delay for smoother transition
+});
+
+function showPageLoader() {
+  document.querySelector('.loading-overlay').style.opacity = '1';
+  document.querySelector('.loading-overlay').style.visibility = 'visible';
+
+}
+
+function hidePageLoader(){
+  setTimeout(function () {
+    document.querySelector('.loading-overlay').style.opacity = '0';
+    document.querySelector('.loading-overlay').style.visibility = 'hidden';
+  }, 500);
+}
+

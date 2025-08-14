@@ -61,13 +61,12 @@ $(document).ready(function() {
 
     // View payment proof handler
     $(document).on('click', '.btn-view-proof', function() {
-        const id = $(this).data('id');
-        viewPaymentProof(id);
+       showReceipt($(this).attr('imagePath'));
     });
 
     // Function to load statistics
     function loadStatistics() {
-        showLoading();
+        showPageLoader();
         
         // Fetch all registrations to calculate stats
         $.get('/api/admin/registrations?page=0&size=1000')
@@ -93,7 +92,7 @@ $(document).ready(function() {
 
     // Function to load registrations
     function loadRegistrations() {
-        showLoading();
+        showPageLoader();
         let url;
         let params = {
             page: currentPage,
@@ -117,7 +116,7 @@ $(document).ready(function() {
                 renderTable(response.data.registrations);
                 renderPagination(response.data.totalPages, currentPage);
                 updatePaginationInfo(response.data.totalItems, response.data.registrations.length);
-                hideLoading();
+                hidePageLoader();
             })
             .fail(handleError);
     }
@@ -157,7 +156,7 @@ $(document).ready(function() {
                                 <i class="fas fa-trash"></i>
                             </button>
                             ${reg.imagePath ? 
-                                `<button class="btn btn-sm btn-info btn-view-proof" data-id="${reg.id}" title="View Payment Proof">
+                                `<button class="btn btn-sm btn-info btn-view-proof" imagePath="${reg.imagePath}" data-id="${reg.id}" title="View Payment Proof">
                                     <i class="fas fa-receipt"></i>
                                 </button>` : ''}
                         </div>
@@ -214,7 +213,7 @@ $(document).ready(function() {
 
     // Function to confirm payment
     function confirmPayment(id) {
-        showLoading();
+        showPageLoader();
         $.ajax({
             url: `/api/admin/confirm-payment/${id}`,
             type: 'POST',
@@ -229,7 +228,7 @@ $(document).ready(function() {
 
     // Function to delete registration
     function deleteRegistration(id) {
-        showLoading();
+        showPageLoader();
         $.ajax({
             url: `/api/admin/delete-registration/${id}`,
             type: 'DELETE',
@@ -249,18 +248,12 @@ $(document).ready(function() {
     }
 
     // Function to show loading overlay
-    function showLoading() {
-        $('.loading-overlay').removeClass('d-none');
-    }
 
-    // Function to hide loading overlay
-    function hideLoading() {
-        $('.loading-overlay').addClass('d-none');
-    }
+
 
     // Function to handle errors
     function handleError(xhr) {
-        hideLoading();
+        hidePageLoader();
         const errorMessage = xhr.responseJSON && xhr.responseJSON.msg ? 
             xhr.responseJSON.msg : 'An error occurred';
         showToast(errorMessage, 'danger');
@@ -290,3 +283,24 @@ $(document).ready(function() {
         });
     }
 });
+
+ function showPageLoader() {
+    // setTimeout(function() {
+    document.querySelector('.loading-overlay').style.opacity = '1';
+      document.querySelector('.loading-overlay').style.visibility = 'visible';
+    // }, 500); 
+  }
+
+  function hidePageLoader() {
+    document.querySelector('.loading-overlay').style.opacity = '0';
+      document.querySelector('.loading-overlay').style.visibility = 'hidden';
+  }
+
+  function showReceipt(imageUrl) {
+    document.getElementById("receiptImage").src = imageUrl;
+    document.getElementById("receiptOverlay").style.display = "flex";
+}
+
+function hideReceipt() {
+    document.getElementById("receiptOverlay").style.display = "none";
+}
