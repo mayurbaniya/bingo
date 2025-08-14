@@ -6,143 +6,144 @@
         --dark: #2c3e50;
         --light: #f8f9fa;
         --primary: #4e73df;
-            --secondary: #858796;
-            --success: #1cc88a;
-            --info: #36b9cc;
-            --warning: #f6c23e;
-            --danger: #e74a3b;
-            --light: #f8f9fc;
-            --dark: #5a5c69;
+        --secondary: #858796;
+        --success: #1cc88a;
+        --info: #36b9cc;
+        --warning: #f6c23e;
+        --danger: #e74a3b;
+        --light: #f8f9fc;
+        --dark: #5a5c69;
     }
 
-.loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-        
-        .spinner {
-            width: 3rem;
-            height: 3rem;
-        }
-        
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
 
-.card {
-            border: none;
-            border-radius: 0.35rem;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-            margin-bottom: 1.5rem;
-        }
-        
-        .card-header {
-            background: #fff;
-            border-bottom: 1px solid #e3e6f0;
-            font-weight: 700;
-            padding: 0.75rem 1.25rem;
-        }
-        
-        .stat-card {
-            border-left: 0.25rem solid var(--primary);
-        }
-        
-        .stat-card.confirmed {
-            border-left-color: var(--success);
-        }
-        
-        .stat-card.pending {
-            border-left-color: var(--warning);
-        }
-        
-        .stat-card.amount {
-            border-left-color: var(--info);
-        }
-        
-        .stat-card .card-body {
-            padding: 1rem;
-        }
-        
-        .stat-card .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .stat-card .stat-label {
-            font-size: 0.9rem;
-            color: var(--secondary);
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        
-        .table th {
-            font-weight: 700;
-            color: var(--dark);
-            background-color: #f8f9fc;
-            border-top: 1px solid #e3e6f0;
-        }
-        
-        .table-hover tbody tr:hover {
-            background-color: rgba(78, 115, 223, 0.05);
-        }
-        
-        .status-badge {
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .status-pending {
-            background-color: rgba(246, 194, 62, 0.2);
-            color: #856404;
-        }
-        
-        .status-confirmed {
-            background-color: rgba(28, 200, 138, 0.2);
-            color: #155724;
-        }
-        
-        .action-btn {
-            padding: 0.25rem 0.5rem;
-            margin: 0 0.15rem;
-            border-radius: 0.25rem;
-            font-size: 0.8rem;
-        }
-        
-        .action-btn i {
-            margin-right: 0.25rem;
-        }
-        
-        .search-container {
-            position: relative;
-        }
-        
-        .search-container .search-icon {
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--secondary);
-        }
-        
-        .search-container input {
-            padding-left: 2.5rem;
-        }
-        
-        .pagination .page-item .page-link {
-            color: var(--primary);
-        }
-        
-        .pagination .page-item.active .page-link {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
+    .spinner {
+        width: 3rem;
+        height: 3rem;
+    }
+
+
+    .card {
+        border: none;
+        border-radius: 0.35rem;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+        margin-bottom: 1.5rem;
+    }
+
+    .card-header {
+        background: #fff;
+        border-bottom: 1px solid #e3e6f0;
+        font-weight: 700;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .stat-card {
+        border-left: 0.25rem solid var(--primary);
+    }
+
+    .stat-card.confirmed {
+        border-left-color: var(--success);
+    }
+
+    .stat-card.pending {
+        border-left-color: var(--warning);
+    }
+
+    .stat-card.amount {
+        border-left-color: var(--info);
+    }
+
+    .stat-card .card-body {
+        padding: 1rem;
+    }
+
+    .stat-card .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .stat-card .stat-label {
+        font-size: 0.9rem;
+        color: var(--secondary);
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .table th {
+        font-weight: 700;
+        color: var(--dark);
+        background-color: #f8f9fc;
+        border-top: 1px solid #e3e6f0;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(78, 115, 223, 0.05);
+    }
+
+    .status-badge {
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .status-pending {
+        background-color: rgba(246, 194, 62, 0.2);
+        color: #856404;
+    }
+
+    .status-confirmed {
+        background-color: rgba(28, 200, 138, 0.2);
+        color: #155724;
+    }
+
+    .action-btn {
+        padding: 0.25rem 0.5rem;
+        margin: 0 0.15rem;
+        border-radius: 0.25rem;
+        font-size: 0.8rem;
+    }
+
+    .action-btn i {
+        margin-right: 0.25rem;
+    }
+
+    .search-container {
+        position: relative;
+    }
+
+    .search-container .search-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--secondary);
+    }
+
+    .search-container input {
+        padding-left: 2.5rem;
+    }
+
+    .pagination .page-item .page-link {
+        color: var(--primary);
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+
     body {
         background: linear-gradient(135deg, var(--light-gold) 0%, #fff9e6 100%);
         min-height: 100vh;
@@ -159,37 +160,38 @@
     }
 
     .ganapati-header {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M40,20 Q50,0 60,20 Q70,10 80,30 Q90,40 70,60 Q50,80 30,60 Q10,40 20,30 Q30,10 40,20 Z" fill="%23D4AF37" opacity="0.3"/></svg>');
-      background-size: cover;
-      color: white;
-      text-align: center;
-      padding: 40px 0;
-      border-bottom: 5px solid var(--gold);
-      position: relative;
-      overflow: hidden;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M40,20 Q50,0 60,20 Q70,10 80,30 Q90,40 70,60 Q50,80 30,60 Q10,40 20,30 Q30,10 40,20 Z" fill="%23D4AF37" opacity="0.3"/></svg>');
+        background-size: cover;
+        color: white;
+        text-align: center;
+        padding: 40px 0;
+        border-bottom: 5px solid var(--gold);
+        position: relative;
+        overflow: hidden;
     }
 
     .ganapati-header::before {
-      content: "ॐ";
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 3rem;
-      opacity: 0.1;
-      transform: rotate(-15deg);
+        content: "ॐ";
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 3rem;
+        opacity: 0.1;
+        transform: rotate(-15deg);
     }
 
     .ganapati-header::after {
-      content: "गणपति बप्पा मोरया";
-      position: static;
-      bottom: 10px;
-      width: 100%;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--gold);
-      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        content: "गणपति बप्पा मोरया";
+        position: static;
+        bottom: 10px;
+        width: 100%;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--gold);
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     }
+
     .card {
         border: none;
         border-radius: 16px;
@@ -666,5 +668,69 @@
     @media (max-width: 768px) {
         .gallery-toggle {
             display: block;
+        }
+    }
+
+    .blocking-modal-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(195, 195, 195, 0.293);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        backdrop-filter: blur(5px);
+    }
+
+    .blocking-modal-content {
+        width: 90%;
+        max-width: 600px;
+        background: linear-gradient(135deg, #fff9e6 0%, #fff 100%);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        border-top: 4px solid var(--saffron);
+        animation: modalIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .blocking-modal-header {
+        background: linear-gradient(to right, var(--saffron), var(--gold));
+        color: white;
+        padding: 20px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+    }
+
+    .blocking-modal-body {
+        padding: 30px;
+        font-size: 1.2rem;
+        color: var(--dark);
+        text-align: center;
+    }
+
+    .blocking-modal-body p {
+        margin-bottom: 0;
+    }
+
+    .blocking-modal-footer {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    @keyframes modalIn {
+        from {
+            transform: translateY(50px) scale(0.9);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0) scale(1);
+            opacity: 1;
         }
     }
