@@ -42,11 +42,6 @@ public class AdminController {
         return ResponseEntity.ok(adminService.deleteRegistration(id));
     }
 
-    @GetMapping("/payment-proof/{id}")
-    public ResponseEntity<?> getPaymentProof(@PathVariable Long id) {
-        return adminService.getPaymentProof(id);
-    }
-
     @GetMapping("/search")
     public ResponseEntity<Response> searchRegistrations(
             @RequestParam String query,
