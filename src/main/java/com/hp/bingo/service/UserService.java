@@ -1,7 +1,6 @@
 package com.hp.bingo.service;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -17,6 +16,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
@@ -41,13 +42,14 @@ public class UserService {
     private final Utils utils;
     private final EntryFormRepository entryFormRepository;
     private final MailTemplates emailService;
+    private final Cloudinary cloudinary;
 
-    @Value("${app.payment.qr.code}")
-    private String paymentQrCode;
+
     @Value("${app.payment.per-ticket-price}")
     private int perTicketPrice;
     @Value("${app.payment.upi}")
     private String upiId;
+
 
     private final Map<String, Request> pendingRegistrations = new ConcurrentHashMap<>();
 
@@ -113,7 +115,7 @@ public class UserService {
             log.info("PayLater registration saved: {}", entryForm.getRegistrationId());
 
             return Response.builder()
-                    .msg("Registration created. Please pay later at the event.")
+                    .msg("Registration completed successfully! You can pay at the venue.")
                     .status(AppConstant.SUCCESS)
                     .data(Map.of("registrationId", entryForm.getRegistrationId()))
                     .build();
@@ -134,7 +136,7 @@ public class UserService {
             return utils.errorResponse("No pending registration found for provided email/phone");
 
         try {
-            String filePath = storeFileLocally(file);
+            String filePath = uploadImage(file);
 
             EntryForm entryForm = modelMapper.map(pending, EntryForm.class);
             entryForm.setCreatedAt(Instant.now());
@@ -184,19 +186,19 @@ public class UserService {
         return email.trim().toLowerCase() + "-" + phone.trim();
     }
 
-    private String storeFileLocally(MultipartFile file) throws IOException {
-        String uploadDir = System.getProperty("user.dir") + "/uploads";
-        File dir = new File(uploadDir);
-        if (!dir.exists())
-            dir.mkdirs();
+    // private String storeFileLocally(MultipartFile file) throws IOException {
+    //     String uploadDir = System.getProperty("user.dir") + "/uploads";
+    //     File dir = new File(uploadDir);
+    //     if (!dir.exists())
+    //         dir.mkdirs();
 
-        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-        File destination = new File(dir, fileName);
-        file.transferTo(destination);
+    //     String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+    //     File destination = new File(dir, fileName);
+    //     file.transferTo(destination);
 
-        log.info("File stored locally at {}", destination.getAbsolutePath());
-        return destination.getAbsolutePath();
-    }
+    //     log.info("File stored locally at {}", destination.getAbsolutePath());
+    //     return destination.getAbsolutePath();
+    // }
 
     private String generateUniqueRegistrationId() {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -234,4 +236,14 @@ public class UserService {
         }
 
     }
+
+    
+    @SuppressWarnings("rawtypes")
+    public String uploadImage(MultipartFile file) throws IOException {
+        Map uploadResult = cloudinary.uploader().upload(file.getBytes(),
+                ObjectUtils.asMap("folder", "myapp/images"));
+        return uploadResult.get("secure_url").toString(); // CDN URL
+    }
+
+    
 }
