@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
 
-    @GetMapping("home")
+
+    @GetMapping({"home",""})
     public String home() {
         log.info("Home page requested");
         return "home";
@@ -25,5 +27,10 @@ public class HomeController {
     public String adminHome() {
         log.info("Admin home page requested");
         return "admin-home";
+    }
+    @GetMapping("gallery")
+    public String gallery() {
+        log.info("Gallery page requested");
+        return "gallery";
     }
 }

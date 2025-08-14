@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,9 +17,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.hp.bingo.constants.AppConstant;
+import com.hp.bingo.dto.EventRequest;
 import com.hp.bingo.dto.Response;
 import com.hp.bingo.entities.EntryForm;
+import com.hp.bingo.entities.Events;
 import com.hp.bingo.repo.EntryFormRepository;
+import com.hp.bingo.repo.EventsRepository;
 import com.hp.bingo.service.mail.MailTemplates;
 import com.hp.bingo.utils.Utils;
 
@@ -33,6 +37,9 @@ public class AdminService {
     private final EntryFormRepository entryFormRepository;
     private final Utils utils;
     private final MailTemplates emailService;
+    private final ModelMapper mapper;
+    private final EventsRepository eventsRepository;
+
 
     public Response getAllRegistrations(Boolean paymentConfirmed, int page, int size, String status) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
@@ -133,4 +140,18 @@ public class AdminService {
                 .build();
     }
 
+    public Response addEvent(EventRequest request) {
+        try {
+
+           Events event =  mapper.map(request, Events.class);
+           eventsRepository.save(event);
+           return Response.builder()
+                   .status(AppConstant.SUCCESS)
+                   .msg("Event added successfully")
+                   .build();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return Response.builder().build();
+    }
 }

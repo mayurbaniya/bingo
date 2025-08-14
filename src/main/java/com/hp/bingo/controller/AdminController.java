@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hp.bingo.dto.EventRequest;
 import com.hp.bingo.dto.Response;
 import com.hp.bingo.service.AdminService;
-
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -52,6 +53,11 @@ public class AdminController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(adminService.searchRegistrations(query, page, size));
+    }
+
+    @PostMapping("/add-event")
+    public ResponseEntity<Response> addEvent(@RequestBody EventRequest request) {
+        return ResponseEntity.ok(adminService.addEvent(request));
     }
 
 }

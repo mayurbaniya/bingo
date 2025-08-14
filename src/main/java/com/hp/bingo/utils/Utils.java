@@ -5,8 +5,13 @@ import org.springframework.stereotype.Component;
 import com.hp.bingo.constants.AppConstant;
 import com.hp.bingo.dto.Response;
 
+
 @Component
 public class Utils {
+
+
+    
+
 
     // === Utility Methods ===
     public boolean isBlank(String s) {
@@ -27,4 +32,5 @@ public class Utils {
                 .status(AppConstant.ERROR)
                 .build();
     }
+    
 }

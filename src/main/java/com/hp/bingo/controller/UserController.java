@@ -41,4 +41,5 @@ public class UserController {
     public ResponseEntity<Response> getDetail(@RequestParam String registrationId) {
         return ResponseEntity.ok(userService.getRegistrationDetails(registrationId));
     }
+    
 }

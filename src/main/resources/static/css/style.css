@@ -1,0 +1,670 @@
+    :root {
+        --saffron: #FF9933;
+        --green: #138808;
+        --gold: #D4AF37;
+        --light-gold: #F5E7A1;
+        --dark: #2c3e50;
+        --light: #f8f9fa;
+        --primary: #4e73df;
+            --secondary: #858796;
+            --success: #1cc88a;
+            --info: #36b9cc;
+            --warning: #f6c23e;
+            --danger: #e74a3b;
+            --light: #f8f9fc;
+            --dark: #5a5c69;
+    }
+
+.loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .spinner {
+            width: 3rem;
+            height: 3rem;
+        }
+        
+
+.card {
+            border: none;
+            border-radius: 0.35rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            background: #fff;
+            border-bottom: 1px solid #e3e6f0;
+            font-weight: 700;
+            padding: 0.75rem 1.25rem;
+        }
+        
+        .stat-card {
+            border-left: 0.25rem solid var(--primary);
+        }
+        
+        .stat-card.confirmed {
+            border-left-color: var(--success);
+        }
+        
+        .stat-card.pending {
+            border-left-color: var(--warning);
+        }
+        
+        .stat-card.amount {
+            border-left-color: var(--info);
+        }
+        
+        .stat-card .card-body {
+            padding: 1rem;
+        }
+        
+        .stat-card .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .stat-card .stat-label {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .table th {
+            font-weight: 700;
+            color: var(--dark);
+            background-color: #f8f9fc;
+            border-top: 1px solid #e3e6f0;
+        }
+        
+        .table-hover tbody tr:hover {
+            background-color: rgba(78, 115, 223, 0.05);
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background-color: rgba(246, 194, 62, 0.2);
+            color: #856404;
+        }
+        
+        .status-confirmed {
+            background-color: rgba(28, 200, 138, 0.2);
+            color: #155724;
+        }
+        
+        .action-btn {
+            padding: 0.25rem 0.5rem;
+            margin: 0 0.15rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+        }
+        
+        .action-btn i {
+            margin-right: 0.25rem;
+        }
+        
+        .search-container {
+            position: relative;
+        }
+        
+        .search-container .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+        }
+        
+        .search-container input {
+            padding-left: 2.5rem;
+        }
+        
+        .pagination .page-item .page-link {
+            color: var(--primary);
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+    body {
+        background: linear-gradient(135deg, var(--light-gold) 0%, #fff9e6 100%);
+        min-height: 100vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--dark);
+        overflow-x: hidden;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,50 Q40,30 50,50 T80,50" fill="none" stroke="%23d4af37" stroke-width="0.5" opacity="0.1"/></svg>');
+        background-size: 200px;
+    }
+
+    .navbar {
+        background: linear-gradient(to right, var(--saffron), var(--gold));
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .ganapati-header {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M40,20 Q50,0 60,20 Q70,10 80,30 Q90,40 70,60 Q50,80 30,60 Q10,40 20,30 Q30,10 40,20 Z" fill="%23D4AF37" opacity="0.3"/></svg>');
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 40px 0;
+      border-bottom: 5px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ganapati-header::before {
+      content: "ॐ";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 3rem;
+      opacity: 0.1;
+      transform: rotate(-15deg);
+    }
+
+    .ganapati-header::after {
+      content: "गणपति बप्पा मोरया";
+      position: static;
+      bottom: 10px;
+      width: 100%;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--gold);
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .card {
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        margin-bottom: 25px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        border-top: 4px solid var(--saffron);
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .section-title {
+        position: relative;
+        margin-bottom: 2rem;
+        padding-bottom: 0.5rem;
+        font-weight: 700;
+        color: var(--dark);
+        text-align: center;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(to right, var(--saffron), var(--gold));
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, var(--saffron), var(--gold));
+        border: none;
+        border-radius: 50px;
+        padding: 12px 30px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(255, 153, 51, 0.4);
+    }
+
+    .form-control {
+        border-radius: 10px;
+        padding: 12px 18px;
+        border: 1px solid #e1e5eb;
+        transition: all 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.15);
+        border-color: var(--saffron);
+    }
+
+    .progress-bar {
+        background: linear-gradient(to right, var(--saffron), var(--gold));
+    }
+
+    .feature-icon {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right, var(--saffron), var(--gold));
+        color: white;
+        font-size: 28px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ticket-counter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: white;
+        border-radius: 12px;
+        padding: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .counter-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--light);
+        border: none;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    .counter-btn:hover {
+        background: var(--saffron);
+        color: white;
+    }
+
+    .counter-value {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0 15px;
+    }
+
+    .payment-card {
+        border-left: 4px solid var(--green);
+    }
+
+    .stats-card {
+        text-align: center;
+        padding: 25px 15px;
+        border-top: 3px solid var(--gold);
+    }
+
+    .qr-container {
+        background: white;
+        padding: 20px;
+        border-radius: 16px;
+        display: inline-block;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        border: 2px solid var(--gold);
+    }
+
+    .qr-placeholder {
+        width: 200px;
+        height: 200px;
+        background: #f1f3f9;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        font-size: 14px;
+        color: #6c757d;
+        text-align: center;
+        padding: 15px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,4H20V20H4V4M6,6V18H18V6H6M8,8H16V10H8V8M8,12H10V14H8V12M12,12H16V16H12V12M14,14V14M8,16H10V18H8V16Z" fill="%23D4AF37" opacity="0.3"/></svg>');
+        background-size: 100% 100%;
+    }
+
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    footer {
+        background: linear-gradient(to right, var(--saffron), var(--dark));
+        color: white;
+        padding: 40px 0 20px;
+        margin-top: 60px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    footer::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path d="M0,10 Q25,0 50,10 T100,0 L100,10 L0,10 Z" fill="%23f8f9fa"/></svg>');
+        background-size: 100% 100%;
+    }
+
+    .floating-notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        animation: floatIn 0.5s ease-out;
+    }
+
+    .modal-content {
+        border-radius: 16px;
+        overflow: hidden;
+        border: 2px solid var(--gold);
+    }
+
+    .modal-header {
+        background: linear-gradient(to right, var(--saffron), var(--gold));
+        color: white;
+        border-bottom: 1px solid var(--gold);
+    }
+
+    .modal-footer {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .payment-option {
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin-bottom: 15px;
+    }
+
+    .payment-option:hover {
+        border-color: var(--saffron);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .payment-option.active {
+        border-color: var(--saffron);
+        background-color: rgba(255, 153, 51, 0.05);
+    }
+
+    .payment-option i {
+        font-size: 2.5rem;
+        color: var(--saffron);
+        margin-bottom: 15px;
+    }
+
+    .upi-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 12px 20px;
+        margin: 10px 0;
+        text-align: left;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .upi-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-color: var(--saffron);
+    }
+
+    .upi-button i {
+        font-size: 2rem;
+        margin-right: 15px;
+        color: var(--saffron);
+    }
+
+    .payment-proof-form {
+        background: white;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    @keyframes floatIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .ganapati-icon {
+        font-size: 2.5rem;
+        color: var(--gold);
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    /* Gallery section styling - initially hidden */
+    .gallery-section {
+        padding: 80px 0;
+        background: linear-gradient(rgba(245, 231, 161, 0.7), rgba(255, 249, 230, 0.9));
+    }
+
+    .gallery-container {
+        column-count: 3;
+        column-gap: 1rem;
+        padding: 0 15px;
+    }
+
+    .gallery-item {
+        display: inline-block;
+        margin-bottom: 1rem;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.05);
+    }
+
+    .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        color: white;
+        padding: 20px 15px 10px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .gallery-container {
+            column-count: 2;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .gallery-container {
+            column-count: 1;
+        }
+    }
+
+    /* Lightbox styling */
+    .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+    }
+
+    .lightbox.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+        background: rgba(255, 153, 51, 0.7);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+        background: var(--saffron);
+        transform: rotate(90deg);
+    }
+
+    .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        background: rgba(255, 153, 51, 0.7);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .lightbox-nav:hover {
+        background: var(--saffron);
+    }
+
+    .lightbox-prev {
+        left: 20px;
+    }
+
+    .lightbox-next {
+        right: 20px;
+    }
+
+    .lightbox-caption {
+        color: white;
+        text-align: center;
+        padding: 15px;
+        font-size: 1.2rem;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    /* New styling for gallery toggle */
+    .gallery-toggle {
+        background: var(--gold);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 50px;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 10;
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        .gallery-toggle {
+            display: block;
+        }
+    }

@@ -1,602 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ganapati Housie Event</title>
+    <title>Admin Dashboard - Ganapati Housie</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <style>
-        :root {
-            --primary: #6a11cb;
-            --secondary: #2575fc;
-            --accent: #ff6b6b;
-            --dark: #2c3e50;
-            --light: #f8f9fa;
-            --success: #28a745;
-            --warning: #ffc107;
-        }
-        
-        body {
-            background: linear-gradient(135deg, var(--light) 0%, #e6f7ff 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-        
-        .navbar {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .card {
-            border: none;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            margin-bottom: 25px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-        }
-        
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-        }
-        
-        .section-title {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            font-weight: 700;
-            color: var(--dark);
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 4px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border: none;
-            border-radius: 50px;
-            padding: 10px 25px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(106, 17, 203, 0.4);
-        }
-        
-        .form-control {
-            border-radius: 10px;
-            padding: 12px 18px;
-            border: 1px solid #e1e5eb;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus {
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.15);
-            border-color: var(--primary);
-        }
-        
-        .progress-bar {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-        }
-        
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            font-size: 28px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-        }
-        
-        .ticket-counter {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: white;
-            border-radius: 12px;
-            padding: 5px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        
-        .counter-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--light);
-            border: none;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-        
-        .counter-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .counter-value {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0 15px;
-        }
-        
-        .payment-card {
-            border-left: 4px solid var(--success);
-        }
-        
-        .admin-card {
-            border-left: 4px solid var(--warning);
-        }
-        
-        .stats-card {
-            text-align: center;
-            padding: 25px 15px;
-        }
-        
-        .stats-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .stats-label {
-            font-size: 1rem;
-            color: #6c757d;
-            font-weight: 500;
-        }
-        
-        .qr-container {
-            background: white;
-            padding: 20px;
-            border-radius: 16px;
-            display: inline-block;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-        
-        .qr-placeholder {
-            width: 200px;
-            height: 200px;
-            background: #f1f3f9;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            font-size: 14px;
-            color: #6c757d;
-            text-align: center;
-            padding: 15px;
-        }
-        
-        .nav-tabs .nav-link {
-            border: none;
-            color: var(--dark);
-            font-weight: 600;
-            padding: 12px 25px;
-            border-radius: 10px;
-        }
-        
-        .nav-tabs .nav-link.active {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-        }
-        
-        .table th {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-        }
-        
-        .table-hover tbody tr:hover {
-            background-color: rgba(106, 17, 203, 0.05);
-        }
-        
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        
-        .status-pending {
-            background-color: rgba(255, 193, 7, 0.2);
-            color: #d39e00;
-        }
-        
-        .status-confirmed {
-            background-color: rgba(40, 167, 69, 0.2);
-            color: #28a745;
-        }
-        
-        .action-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 3px;
-            transition: all 0.2s ease;
-        }
-        
-        .action-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 40px 0 20px;
-            margin-top: 60px;
-        }
-        
-        .floating-notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            animation: floatIn 0.5s ease-out;
-        }
-        
-        @keyframes floatIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <i class="fas fa-dice me-2"></i>
-                <span class="fw-bold">Ganapati Housie</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-        </div>
-    </nav>
-    <!-- Admin Section -->
-    <section id="admin-section" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-title d-inline-block">Admin Dashboard</h2>
-                <p class="text-muted">Manage registrations and payments</p>
+
+
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <i class="fas fa-om me-2"></i>
+                    <span class="fw-bold">Ganapati Housie</span>
+                </a>
             </div>
-            
-            <div class="card admin-card p-4 mb-5">
-                <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
-                    <div>
-                        <h4 class="mb-0">Registrations Overview</h4>
+        </nav>
+
+
+        <div class="container-fluid px-3 px-lg-4 py-4">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card stat-card h-100">
+                        <div class="card-body py-2">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="stat-label">TOTAL REGISTRATIONS</div>
+                                    <div class="stat-number" id="total-registrations">0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex">
-                        <div class="input-group me-2" style="max-width: 300px;">
-                            <input type="text" class="form-control" placeholder="Search registrations...">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search"></i>
-                            </button>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card stat-card confirmed h-100">
+                        <div class="card-body py-2">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="stat-label">PAYMENT CONFIRMED</div>
+                                    <div class="stat-number" id="confirmed-count">0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card stat-card pending h-100">
+                        <div class="card-body py-2">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="stat-label">PAYMENT PENDING</div>
+                                    <div class="stat-number" id="pending-count">0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clock fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card stat-card amount h-100">
+                        <div class="card-body py-2">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="stat-label">TOTAL AMOUNT</div>
+                                    <div class="stat-number" id="total-amount">₹0</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-rupee-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registrations Table -->
+            <div class="card mb-4">
+                <div class="card-header d-flex flex-column flex-md-row justify-content-between align-items-md-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Registrations</h6>
+                    <div class="d-flex mt-2 mt-md-0">
+                        <div class="search-container me-2">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search...">
                         </div>
                         <div class="dropdown">
-                            <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-filter me-2"></i> Filter
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown"
+                                data-bs-toggle="dropdown">
+                                <i class="fas fa-filter me-1"></i> Filter
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">All Registrations</a></li>
-                                <li><a class="dropdown-item" href="#">Payment Confirmed</a></li>
-                                <li><a class="dropdown-item" href="#">Payment Pending</a></li>
+                                <li><a class="dropdown-item filter-option" href="#" data-filter="all">All
+                                        Registrations</a></li>
+                                <li><a class="dropdown-item filter-option" href="#" data-filter="confirmed">Payment
+                                        Confirmed</a></li>
+                                <li><a class="dropdown-item filter-option" href="#" data-filter="pending">Payment
+                                        Pending</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                
-                <div class="row mb-4">
-                    <div class="col-md-3 mb-3 mb-md-0">
-                        <div class="card stats-card">
-                            <div class="stats-number">142</div>
-                            <div class="stats-label">Total Registrations</div>
-                        </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="registrationsTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Tickets</th>
+                                    <th>Status</th>
+                                    <th class="date-cell">Registration Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="registrationsBody">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-md-3 mb-3 mb-md-0">
-                        <div class="card stats-card">
-                            <div class="stats-number">86</div>
-                            <div class="stats-label">Payment Confirmed</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3 mb-md-0">
-                        <div class="card stats-card">
-                            <div class="stats-number">56</div>
-                            <div class="stats-label">Payment Pending</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card stats-card">
-                            <div class="stats-number">₹42,500</div>
-                            <div class="stats-label">Total Amount</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Tickets</th>
-                                <th>Status</th>
-                                <th>Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#HOU2389</td>
-                                <td>Rahul Sharma</td>
-                                <td>rahul@example.com</td>
-                                <td>3</td>
-                                <td><span class="status-badge status-confirmed">Confirmed</span></td>
-                                <td>12 Aug, 2023</td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary action-btn" title="View Details">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-success action-btn" title="Download Proof">
-                                        <i class="fas fa-download"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#HOU2417</td>
-                                <td>Priya Patel</td>
-                                <td>priya@example.com</td>
-                                <td>2</td>
-                                <td><span class="status-badge status-confirmed">Confirmed</span></td>
-                                <td>12 Aug, 2023</td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary action-btn" title="View Details">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-success action-btn" title="Download Proof">
-                                        <i class="fas fa-download"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#HOU2491</td>
-                                <td>Vikram Singh</td>
-                                <td>vikram@example.com</td>
-                                <td>4</td>
-                                <td><span class="status-badge status-pending">Pending</span></td>
-                                <td>11 Aug, 2023</td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary action-btn" title="View Details">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-success action-btn" title="Confirm Payment">
-                                        <i class="fas fa-check"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-danger action-btn" title="Delete">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#HOU2523</td>
-                                <td>Ananya Reddy</td>
-                                <td>ananya@example.com</td>
-                                <td>1</td>
-                                <td><span class="status-badge status-pending">Pending</span></td>
-                                <td>10 Aug, 2023</td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary action-btn" title="View Details">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-success action-btn" title="Confirm Payment">
-                                        <i class="fas fa-check"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-danger action-btn" title="Delete">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5 class="mb-4">Ganapati Housie</h5>
-                    <p>Experience the thrill of traditional housie with modern convenience. Join us for an evening of fun, prizes, and community bonding.</p>
-                </div>
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5 class="mb-4">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#user-section" class="text-white text-decoration-none">Register</a></li>
-                        <li class="mb-2"><a href="#features" class="text-white text-decoration-none">Features</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">FAQs</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="mb-4">Contact Info</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Mumbai, Maharashtra</li>
-                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +91 98765 43210</li>
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@ganapatihousie.com</li>
-                    </ul>
-                    <div class="d-flex mt-3">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    <div class="d-flex justify-content-between align-items-center flex-column flex-md-row">
+                        <div class="mb-2 mb-md-0">
+                            <span id="paginationInfo">Showing 0 to 0 of 0 entries</span>
+                        </div>
+                        <nav>
+                            <ul class="pagination mb-0" id="pagination">
+                                <!-- Pagination will be populated by JavaScript -->
+                            </ul>
+                        </nav>
                     </div>
                 </div>
-            </div>
-            <hr class="my-4 bg-light">
-            <div class="text-center">
-                <p class="mb-0">&copy; 2023 Ganapati Housie. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Notification -->
-    <div class="floating-notification">
-        <div class="toast show" role="alert">
-            <div class="toast-header bg-primary text-white">
-                <strong class="me-auto"><i class="fas fa-ticket-alt me-2"></i> Limited Seats!</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
-            </div>
-            <div class="toast-body bg-white">
-                Only 23 seats left for the event. Register now to secure your spot!
             </div>
         </div>
     </div>
 
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Ticket counter functionality
-        document.getElementById('increment-ticket').addEventListener('click', function() {
-            const countElement = document.getElementById('ticket-count');
-            let count = parseInt(countElement.textContent);
-            if (count < 10) {
-                countElement.textContent = count + 1;
-            }
-        });
-        
-        document.getElementById('decrement-ticket').addEventListener('click', function() {
-            const countElement = document.getElementById('ticket-count');
-            let count = parseInt(countElement.textContent);
-            if (count > 1) {
-                countElement.textContent = count - 1;
-            }
-        });
-        
-        // Toggle payment section
-        document.getElementById('payNowToggle').addEventListener('change', function() {
-            const paymentSection = document.getElementById('payment-section');
-            if (this.checked) {
-                paymentSection.style.display = 'block';
-                // Scroll to payment section
-                paymentSection.scrollIntoView({behavior: 'smooth'});
-            } else {
-                paymentSection.style.display = 'none';
-            }
-        });
-        
-        // Form submission
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Show success notification
-            showNotification('Registration successful! Please proceed to payment.');
-            
-            // Show payment section if "Pay Now" is checked
-            if (document.getElementById('payNowToggle').checked) {
-                document.getElementById('payment-section').style.display = 'block';
-                document.getElementById('payment-section').scrollIntoView({behavior: 'smooth'});
-            }
-        });
-        
-        document.getElementById('paymentProofForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showNotification('Payment proof submitted successfully! Your registration is being processed.');
-        });
-        
-        // Show notification function
-        function showNotification(message) {
-            // In a real app, this would show a toast notification
-            alert(message);
-        }
-        
-        // Animation on scroll
-        function checkScroll() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            elements.forEach(element => {
-                const position = element.getBoundingClientRect();
-                if (position.top < window.innerHeight * 0.9) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-        
-        // Initial check
-        window.addEventListener('load', checkScroll);
-        window.addEventListener('scroll', checkScroll);
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-sm');
-            } else {
-                navbar.classList.remove('shadow-sm');
-            }
-        });
-    </script>
+    <script src="/script/query.js"></script>
+
 </body>
+
 </html>

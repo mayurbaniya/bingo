@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ganapati Festival Housie Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="fas fa-om me-2"></i>
+        <span class="fw-bold">Ganapati Housie</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Registration</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active gallery-link" href="/gallery">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header with Religious Theme -->
+ <header class="ganapati-header">
+    <div class="container">
+      <h1 class="display-3 fw-bold animate__animated animate__fadeInDown">एकदंत गणेश उत्सव मंडल</h1>
+      <p class="lead mb-4 animate__animated animate__fadeInUp animate__delay-1s">Join us for an evening of fun,
+        devotion, and exciting prizes</p>
+      <div class="ganapati-icon animate__animated animate__bounceIn animate__delay-2s">
+        <i class="fas fa-om"></i>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery-section">
+    <button class="gallery-toggle" id="closeGallery">
+      <i class="fas fa-times me-1"></i> Close
+    </button>
+    
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title d-inline-block">Festival Gallery</h2>
+        <p class="text-muted">Relive the divine moments from our previous celebrations</p>
+      </div>
+
+      <div class="gallery-container">
+        <!-- Gallery items -->
+        <div class="gallery-item">
+          <img th:src="@{/gallary/1.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Divine Decorations</h5>
+            <p>Beautifully adorned Lord Ganesha idol</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/2.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Cultural Performances</h5>
+            <p>Devotees performing traditional dances</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/13.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Sacred Rituals</h5>
+            <p>Priests conducting Ganesh Puja</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/4.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Community Gathering</h5>
+            <p>Devotees gathered for Aarti</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/5.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Traditional Decor</h5>
+            <p>Handcrafted decorations at the mandap</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/6.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Divine Prasad</h5>
+            <p>Traditional sweets offered to Lord Ganesha</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/7.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Cultural Events</h5>
+            <p>Children participating in festival activities</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/8.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Visarjan Procession</h5>
+            <p>Immersion ceremony with musical procession</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/9.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Festival Illuminations</h5>
+            <p>Mandap decorated with traditional lamps</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/10.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Devotional Prayers</h5>
+            <p>Devotees offering prayers to Lord Ganesha</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/11.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Musical Performances</h5>
+            <p>Traditional musicians during the festival</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img th:src="@{/gallary/12.jpg}" alt="Traditional Decoration">
+          <div class="gallery-caption">
+            <h5>Floral Decorations</h5>
+            <p>Beautiful flower arrangements at the temple</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox for gallery images -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-close">&times;</div>
+    <div class="lightbox-nav lightbox-prev">&#10094;</div>
+    <div class="lightbox-nav lightbox-next">&#10095;</div>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightbox-img">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title d-inline-block">Contact Us</h2>
+        <p class="text-muted">Have questions? Get in touch with our team</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <div class="card h-100">
+            <div class="card-body p-4">
+              <h5 class="mb-4"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Venue Address</h5>
+              <p class="mb-4">Shree Siddhivinayak Temple Hall<br>Prabhadevi, Mumbai<br>Maharashtra 400025</p>
+
+              <h5 class="mb-4"><i class="fas fa-clock me-2 text-primary"></i> Event Timing</h5>
+              <p class="mb-0">7th September 2023<br>6:00 PM to 9:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card h-100">
+            <div class="card-body p-4">
+              <h5 class="mb-4"><i class="fas fa-envelope me-2 text-primary"></i> Contact Information</h5>
+              <p class="mb-3"><i class="fas fa-phone me-2"></i> +91 98765 43210</p>
+              <p class="mb-4"><i class="fas fa-envelope me-2"></i> info@ganapatihousie.com</p>
+
+              <h5 class="mb-4"><i class="fas fa-user me-2 text-primary"></i> Organizing Committee</h5>
+              <p class="mb-0">Shree Ganesh Mandal<br>Prabhadevi, Mumbai</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container pt-5">
+      <div class="row">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <h5 class="mb-4">Ganapati Housie</h5>
+          <p>Experience the joy of traditional housie in the divine presence of Lord Ganesha. Join us for an evening of
+            fun, devotion, and community bonding.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <h5 class="mb-4">Follow Us</h5>
+          <div class="d-flex justify-content-md-end">
+            <a href="#" class="text-white me-3 fs-4"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white me-3 fs-4"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white me-3 fs-4"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white fs-4"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4 bg-light">
+      <div class="text-center">
+        <p class="mb-0">ॐ गं गणपतये नमः</p>
+        <p class="mb-0">&copy; 2025 Ganapati Housie. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+ 
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/script/query.js"></script>
+</body>
+
+</html>
