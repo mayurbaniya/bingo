@@ -185,13 +185,13 @@ document.getElementById('confirmPaymentBtn').addEventListener('click', function 
     // Scroll to payment section
     document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
   } else {
-    
 
-    showBlockingModal("Registration completed successfully! You can pay at the venue.", function() {
-        location.reload(true);
-      });
 
-    
+    showBlockingModal("Registration completed successfully! You can pay at the venue.", function () {
+      location.reload(true);
+    });
+
+
   }
 });
 
@@ -203,10 +203,10 @@ document.getElementById('googlePayBtn').addEventListener('click', function (e) {
 });
 
 
-$(document).off('click','#googlePayBtn,#phonePeBtn,#paytmBtn').on('click','#googlePayBtn,#phonePeBtn,#paytmBtn',function(){
-   showNotification('Redirecting to payment url...');
-		window.open(this.href, '_blank');
-	});
+$(document).off('click', '#googlePayBtn,#phonePeBtn,#paytmBtn').on('click', '#googlePayBtn,#phonePeBtn,#paytmBtn', function () {
+  showNotification('Redirecting to payment url...');
+  window.open(this.href, '_blank');
+});
 
 // File input handler
 document.getElementById('paymentFile').addEventListener('change', function (e) {
@@ -239,9 +239,9 @@ document.getElementById('paymentProofForm').addEventListener('submit', function 
       Message Us
     </a>`;
 
-    showBlockingModal(message, function() {
-        location.reload(true);
-      });
+  showBlockingModal(message, function () {
+    location.reload(true);
+  });
 });
 
 function registerAndGetQr() {
@@ -353,4 +353,66 @@ function showBlockingModal(message, callback) {
       callback();
     }
   });
+
+
+
+
 }
+
+
+$(document).on('keypress paste change', '.mob-only', function (e) {
+  if (e.type == "paste") {
+    if (!e.originalEvent.clipboardData.getData('Text').match(/^[6-9]{1}[0-9]{9}$/)) {
+      e.preventDefault();
+      return false;
+    }
+  } else if (e.type == "change") {
+      console.log('..')
+    if (!this.value.match(/^[6-9]{1}[0-9]{9}$/)) {
+      this.value = '';
+      return false;
+    }
+  } else {
+    if (this.value.length == 10) {
+      e.preventDefault();
+      return false;
+    }
+    else if (this.value.length == 0) {
+      var regex = new RegExp("[6-9]");
+    }
+    else {
+      var regex = new RegExp("[0-9]");
+    }
+    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+    if (regex.test(str)) {
+      return true;
+    }
+    e.preventDefault();
+    return false;
+
+  }
+});
+
+$(document).on('change keypress paste', '.email-only', function (e) {
+  if (e.type == 'paste') {
+    e.preventDefault();
+  }
+  else if (e.type == 'keypress') {
+    if ($(this).val().length > 100) {
+      e.preventDefault();
+    }
+    var charCode = e.which || e.keyCode;
+    if (!/[A-Za-z0-9.%+@-]/.test(String.fromCharCode(charCode))) {
+
+      e.preventDefault();
+    }
+  } else {
+    if (!this.value.trim().match(/^[^\s@]+@[^\s@]+\.[a-zA-Z]+$/)) {
+      try { toastInfo("Please Enter A Valid Email Address!!"); } catch (e) {
+        alert("Please Enter A Valid Email Address!!")
+      }
+      $(this).val('');
+      return false;
+    }
+  }
+});
