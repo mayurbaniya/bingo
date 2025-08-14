@@ -1,3 +1,6 @@
+
+const adminBaseUrl = 'http://localhost:9090/api/admin';
+const userBaseUrl = 'http://localhost:9090/api/users';
 document.addEventListener('DOMContentLoaded', function () {
   // Get all gallery items
   // Gallery nav link click handler
@@ -186,21 +189,13 @@ document.getElementById('confirmPaymentBtn').addEventListener('click', function 
     document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
   } else {
 
-
-    showBlockingModal("Registration completed successfully! You can pay at the venue.", function () {
-      location.reload(true);
-    });
+    registerAndPayLater();
+   
 
 
   }
 });
 
-// UPI button handlers (simulate payment)
-document.getElementById('googlePayBtn').addEventListener('click', function (e) {
-  showNotification('Redirecting to Google Pay...');
-
-  window.open('https://www.example.com', '_blank');
-});
 
 
 $(document).off('click', '#googlePayBtn,#phonePeBtn,#paytmBtn').on('click', '#googlePayBtn,#phonePeBtn,#paytmBtn', function () {
@@ -246,7 +241,7 @@ document.getElementById('paymentProofForm').addEventListener('submit', function 
 
 function registerAndGetQr() {
   $.ajax({
-    url: 'http://localhost:9090/api/users/register', // Replace with your actual endpoint
+    url: `${userBaseUrl}/register`, // Replace with your actual endpoint
     type: 'POST',
     contentType: 'application/json',
     data: JSON.stringify({
@@ -261,10 +256,34 @@ function registerAndGetQr() {
       $('.upi-button').attr('href', response.data.upiUri);
     },
     error: function (xhr, status, error) {
-      console.error('Error:', error);
+      alert('something went wrong:', error);
     }
   });
 }
+
+function registerAndPayLater() {
+  $.ajax({
+    url: `${userBaseUrl}/register`, // Replace with your actual endpoint
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      name: $('#name').val(),
+      phone: $('#phone').val(),
+      email: $('#email').val(),
+      payNow: false,
+      tickets: $('#ticket-count').text()
+    }),
+    success: function (response) {
+       showBlockingModal("Registration completed successfully! You can pay at the venue.", function () {
+      location.reload(true);
+    });
+    },
+    error: function (xhr, status, error) {
+      alert('something went wrong:', error);
+    }
+  });
+}
+
 // Show notification function
 function showNotification(message) {
   // Create notification element
