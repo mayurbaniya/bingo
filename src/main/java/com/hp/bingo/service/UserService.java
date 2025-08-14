@@ -1,7 +1,6 @@
 package com.hp.bingo.service;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -239,6 +238,7 @@ public class UserService {
     }
 
     
+    @SuppressWarnings("rawtypes")
     public String uploadImage(MultipartFile file) throws IOException {
         Map uploadResult = cloudinary.uploader().upload(file.getBytes(),
                 ObjectUtils.asMap("folder", "myapp/images"));

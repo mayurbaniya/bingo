@@ -80,6 +80,7 @@ public class AdminService {
                 .build();
     }
 
+    @SuppressWarnings("deprecation")
     public Response deleteRegistration(Long id) {
         if (!entryFormRepository.existsById(id)) {
             return utils.errorResponse("Registration not found");

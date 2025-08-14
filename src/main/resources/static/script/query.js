@@ -1,6 +1,7 @@
 
-const adminBaseUrl = 'http://localhost:9090/api/admin';
-const userBaseUrl = 'http://localhost:9090/api/users';
+const adminBaseUrl = `${window.AppConfig.baseUrl}/api/admin`;
+const userBaseUrl = `${window.AppConfig.baseUrl}/api/users`;
+
 document.addEventListener('DOMContentLoaded', function () {
   // Get all gallery items
   // Gallery nav link click handler
