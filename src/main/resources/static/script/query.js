@@ -435,3 +435,11 @@ $(document).on('change keypress paste', '.email-only', function (e) {
     }
   }
 });
+
+
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.querySelector('.loading-overlay').style.opacity = '0';
+      document.querySelector('.loading-overlay').style.visibility = 'hidden';
+    }, 500); // slight delay for smoother transition
+  });

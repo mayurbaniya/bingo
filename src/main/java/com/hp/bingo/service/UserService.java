@@ -116,7 +116,7 @@ public class UserService {
             log.info("PayLater registration saved: {}", entryForm.getRegistrationId());
 
             return Response.builder()
-                    .msg("Registration created. Please pay later at the event.")
+                    .msg("Registration completed successfully! You can pay at the venue.")
                     .status(AppConstant.SUCCESS)
                     .data(Map.of("registrationId", entryForm.getRegistrationId()))
                     .build();
