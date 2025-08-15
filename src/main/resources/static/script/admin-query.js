@@ -67,7 +67,6 @@ $(document).ready(function() {
     // Function to load statistics
     function loadStatistics() {
         showPageLoader();
-        
         // Fetch all registrations to calculate stats
         $.get('/api/admin/registrations?page=0&size=1000')
             .done(function(response) {
@@ -240,63 +239,10 @@ $(document).ready(function() {
             error: handleError
         });
     }
-
-    // Function to view payment proof
-    function viewPaymentProof(id) {
-        // Open in new tab
-        window.open(`/api/admin/payment-proof/${id}`, '_blank');
-    }
-
-    // Function to show loading overlay
-
-
-
-    // Function to handle errors
-    function handleError(xhr) {
-        hidePageLoader();
-        const errorMessage = xhr.responseJSON && xhr.responseJSON.msg ? 
-            xhr.responseJSON.msg : 'An error occurred';
-        showToast(errorMessage, 'danger');
-    }
-
-    // Function to show toast notifications
-    function showToast(message, type) {
-        // Create toast element
-        const toast = $(`
-            <div class="toast align-items-center text-white bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        ${message}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
-        `);
-
-        $('.toast-container').append(toast);
-        const bsToast = new bootstrap.Toast(toast[0]);
-        bsToast.show();
-
-        // Remove toast after it hides
-        toast.on('hidden.bs.toast', function() {
-            toast.remove();
-        });
-    }
+  
 });
 
- function showPageLoader() {
-    // setTimeout(function() {
-    document.querySelector('.loading-overlay').style.opacity = '1';
-      document.querySelector('.loading-overlay').style.visibility = 'visible';
-    // }, 500); 
-  }
-
-  function hidePageLoader() {
-    document.querySelector('.loading-overlay').style.opacity = '0';
-      document.querySelector('.loading-overlay').style.visibility = 'hidden';
-  }
-
-  function showReceipt(imageUrl) {
+function showReceipt(imageUrl) {
     document.getElementById("receiptImage").src = imageUrl;
     document.getElementById("receiptOverlay").style.display = "flex";
 }
