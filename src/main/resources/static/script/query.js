@@ -67,7 +67,7 @@ document.getElementById('confirmPaymentBtn').addEventListener('click', function 
   if (payNowSelected) {
     // Show payment proof section
     document.getElementById('payment-section').style.display = 'block';
-    document.getElementById('user-section').style.display
+    document.getElementById('user-section').style.display = 'none';
     // Scroll to payment section
     document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
   } else {
