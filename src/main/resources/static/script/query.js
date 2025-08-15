@@ -254,3 +254,41 @@ function resetPaymentChoiceModal() {
     document.getElementById('fileName').textContent = '';
     document.getElementById('paymentFile').value = ''; 
 }
+
+// Add this to query.js
+// Add this to query.js
+document.addEventListener('DOMContentLoaded', function() {
+  // Scroll to registration when button is clicked
+  document.querySelectorAll('.register-scroll-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      // Add smooth scrolling animation
+      const targetSection = document.getElementById('user-section');
+      const offset = 100; // Adjust scroll offset if needed
+      
+      window.scrollTo({
+        top: targetSection.offsetTop - offset,
+        behavior: 'smooth'
+      });
+    });
+  });
+  
+  // Adjust carousel height on load and resize
+  function adjustCarouselHeight() {
+    const carousel = document.getElementById('gameCarousel');
+    if (carousel) {
+      const activeItem = carousel.querySelector('.carousel-item.active');
+      if (activeItem) {
+        carousel.style.height = activeItem.offsetHeight + 'px';
+      }
+    }
+  }
+  
+  // Initial adjustment
+  adjustCarouselHeight();
+  
+  // Adjust on window resize
+  window.addEventListener('resize', adjustCarouselHeight);
+  
+  // Adjust when carousel slides
+  document.getElementById('gameCarousel')?.addEventListener('slid.bs.carousel', adjustCarouselHeight);
+});
