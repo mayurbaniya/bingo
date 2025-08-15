@@ -61,14 +61,12 @@ $(document).ready(function() {
 
     // View payment proof handler
     $(document).on('click', '.btn-view-proof', function() {
-        const id = $(this).data('id');
-        viewPaymentProof(id);
+       showReceipt($(this).attr('imagePath'));
     });
 
     // Function to load statistics
     function loadStatistics() {
-        showLoading();
-        
+        showPageLoader();
         // Fetch all registrations to calculate stats
         $.get('/api/admin/registrations?page=0&size=1000')
             .done(function(response) {
@@ -93,7 +91,7 @@ $(document).ready(function() {
 
     // Function to load registrations
     function loadRegistrations() {
-        showLoading();
+        showPageLoader();
         let url;
         let params = {
             page: currentPage,
@@ -117,7 +115,7 @@ $(document).ready(function() {
                 renderTable(response.data.registrations);
                 renderPagination(response.data.totalPages, currentPage);
                 updatePaginationInfo(response.data.totalItems, response.data.registrations.length);
-                hideLoading();
+                hidePageLoader();
             })
             .fail(handleError);
     }
@@ -157,7 +155,7 @@ $(document).ready(function() {
                                 <i class="fas fa-trash"></i>
                             </button>
                             ${reg.imagePath ? 
-                                `<button class="btn btn-sm btn-info btn-view-proof" data-id="${reg.id}" title="View Payment Proof">
+                                `<button class="btn btn-sm btn-info btn-view-proof" imagePath="${reg.imagePath}" data-id="${reg.id}" title="View Payment Proof">
                                     <i class="fas fa-receipt"></i>
                                 </button>` : ''}
                         </div>
@@ -214,7 +212,7 @@ $(document).ready(function() {
 
     // Function to confirm payment
     function confirmPayment(id) {
-        showLoading();
+        showPageLoader();
         $.ajax({
             url: `/api/admin/confirm-payment/${id}`,
             type: 'POST',
@@ -229,7 +227,7 @@ $(document).ready(function() {
 
     // Function to delete registration
     function deleteRegistration(id) {
-        showLoading();
+        showPageLoader();
         $.ajax({
             url: `/api/admin/delete-registration/${id}`,
             type: 'DELETE',
@@ -241,52 +239,14 @@ $(document).ready(function() {
             error: handleError
         });
     }
-
-    // Function to view payment proof
-    function viewPaymentProof(id) {
-        // Open in new tab
-        window.open(`/api/admin/payment-proof/${id}`, '_blank');
-    }
-
-    // Function to show loading overlay
-    function showLoading() {
-        $('.loading-overlay').removeClass('d-none');
-    }
-
-    // Function to hide loading overlay
-    function hideLoading() {
-        $('.loading-overlay').addClass('d-none');
-    }
-
-    // Function to handle errors
-    function handleError(xhr) {
-        hideLoading();
-        const errorMessage = xhr.responseJSON && xhr.responseJSON.msg ? 
-            xhr.responseJSON.msg : 'An error occurred';
-        showToast(errorMessage, 'danger');
-    }
-
-    // Function to show toast notifications
-    function showToast(message, type) {
-        // Create toast element
-        const toast = $(`
-            <div class="toast align-items-center text-white bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="d-flex">
-                    <div class="toast-body">
-                        ${message}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
-        `);
-
-        $('.toast-container').append(toast);
-        const bsToast = new bootstrap.Toast(toast[0]);
-        bsToast.show();
-
-        // Remove toast after it hides
-        toast.on('hidden.bs.toast', function() {
-            toast.remove();
-        });
-    }
+  
 });
+
+function showReceipt(imageUrl) {
+    document.getElementById("receiptImage").src = imageUrl;
+    document.getElementById("receiptOverlay").style.display = "flex";
+}
+
+function hideReceipt() {
+    document.getElementById("receiptOverlay").style.display = "none";
+}

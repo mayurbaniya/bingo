@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Ganapati Housie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --green: #138808;
+            --gold: #D4AF37;
+            --light-gold: #F5E7A1;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --primary: #4e73df;
+            --secondary: #858796;
+            --success: #1cc88a;
+            --info: #36b9cc;
+            --warning: #f6c23e;
+            --danger: #e74a3b;
+            --light: #f8f9fc;
+            --dark: #5a5c69;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light-gold) 0%, #fff9e6 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,50 Q40,30 50,50 T80,50" fill="none" stroke="%23d4af37" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .ganapati-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .ganapati-logo i {
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .ganapati-logo h1 {
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .ganapati-logo h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--saffron), var(--gold));
+            border-radius: 4px;
+        }
+
+        .login-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-top: 4px solid var(--saffron);
+            padding: 30px;
+            animation: cardIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 18px;
+            border: 1px solid #e1e5eb;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(255, 153, 51, 0.15);
+            border-color: var(--saffron);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .input-group input {
+            padding-left: 45px;
+        }
+
+        .btn-login {
+            background: linear-gradient(to right, var(--saffron), var(--gold));
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            width: 100%;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 153, 51, 0.4);
+        }
+
+        .divider {
+            position: relative;
+            text-align: center;
+            margin: 25px 0;
+            color: var(--secondary);
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+        }
+
+        .divider span {
+            position: relative;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 0 15px;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--secondary);
+        }
+
+        .forgot-password a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: var(--saffron);
+            text-decoration: underline;
+        }
+
+        .divine-decoration {
+            position: absolute;
+            font-size: 3rem;
+            color: rgba(212, 175, 55, 0.1);
+            z-index: -1;
+        }
+
+        .divine-decoration.top-left {
+            top: 10%;
+            left: 10%;
+            transform: rotate(-15deg);
+        }
+
+        .divine-decoration.top-right {
+            top: 10%;
+            right: 10%;
+            transform: rotate(15deg);
+        }
+
+        .divine-decoration.bottom-left {
+            bottom: 10%;
+            left: 10%;
+            transform: rotate(15deg);
+        }
+
+        .divine-decoration.bottom-right {
+            bottom: 10%;
+            right: 10%;
+            transform: rotate(-15deg);
+        }
+
+        .divine-decoration.center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            font-size: 8rem;
+            opacity: 0.05;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-text a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loader -->
+    <div class="loading-overlay">
+        <div class="ganapati-loader">
+            <div class="loader-spinner"></div>
+            <div class="om-symbol">ॐ</div>
+        </div>
+    </div>
+    <!-- Divine Decorations -->
+    <div class="divine-decoration top-left">ॐ</div>
+    <div class="divine-decoration top-right">🕉️</div>
+    <div class="divine-decoration bottom-left">🌺</div>
+    <div class="divine-decoration bottom-right">🪷</div>
+    <div class="divine-decoration center">ॐ</div>
+
+    <div class="login-container">
+        <div class="ganapati-logo">
+            <i class="fas fa-om"></i>
+            <h1>Admin Login</h1>
+        </div>
+
+        <div class="login-card">
+            <form action="/admin/login" method="post" id="loginForm">
+                <div class="mb-4">
+                    <label class="form-label">Username</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="form-control" name="username" placeholder="Enter your username"
+                            required>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" class="form-control" name="password" placeholder="Enter your password"
+                            required>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-login">Sign In <i class="fas fa-arrow-right ms-2"></i></button>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="footer-text">
+            <p>© 2025 Ganapati Housie. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of
+                    Service</a></p>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                document.querySelector('.loading-overlay').style.opacity = '0';
+                document.querySelector('.loading-overlay').style.visibility = 'hidden';
+            }, 500); // slight delay for smoother transition
+        });
+
+    </script>
+</body>
+
+</html>

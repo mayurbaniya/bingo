@@ -12,7 +12,15 @@
 
 <body>
 
+    <div th:if="${session.isAdminLoggedIn}">
 
+
+    <div class="loading-overlay">
+        <div class="ganapati-loader">
+            <div class="loader-spinner"></div>
+            <div class="om-symbol">ॐ</div>
+        </div>
+    </div>
     <div class="content">
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
             <div class="container">
@@ -41,7 +49,7 @@
                                     <div class="stat-number" id="total-registrations">0</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-users fa-2x text-gray-300"></i>
+                                    <i class="fas fa-users fa-2x text-primary"></i>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +64,7 @@
                                     <div class="stat-number" id="confirmed-count">0</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                                    <i class="fas fa-check-circle fa-2x text-success"></i>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +79,7 @@
                                     <div class="stat-number" id="pending-count">0</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-clock fa-2x text-gray-300"></i>
+                                    <i class="fas fa-clock fa-2x text-warning"></i>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +94,7 @@
                                     <div class="stat-number" id="total-amount">₹0</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-rupee-sign fa-2x text-gray-300"></i>
+                                    <i class="fas fa-rupee-sign fa-2x text-danger"></i>
                                 </div>
                             </div>
                         </div>
@@ -155,21 +163,24 @@
         </div>
     </div>
 
+     <script th:inline="javascript">
+        // Expose properties to global scope
+        window.AppConfig = {
+            baseUrl: /*[[${baseUrl}]]*/ 'https://bingo-production-23d7.up.railway.app' // Fallback for static preview
+        };
+    </script>
+
     <!-- Toast Container -->
     <div class="toast-container"></div>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay d-none">
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
+    <div id="receiptOverlay" class="overlay" onclick="hideReceipt()">
+        <img id="receiptImage" class="overlay-image" />
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script src="/script/utils.js"></script>
     <script src="/script/admin-query.js"></script>
-
+</div>
 </body>
 
 </html>
