@@ -608,6 +608,7 @@
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
+        z-index: 999;
     }
 
     .lightbox-close:hover {
@@ -616,6 +617,7 @@
     }
 
     .lightbox-nav {
+        z-index: 999;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
