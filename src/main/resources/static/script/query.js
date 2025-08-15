@@ -220,7 +220,6 @@ function checkScroll() {
   });
 }
 
-// Initial check
 window.addEventListener('load', checkScroll);
 window.addEventListener('scroll', checkScroll);
 
