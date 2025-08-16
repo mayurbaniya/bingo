@@ -23,6 +23,9 @@ public class PageController {
     @Value("${app.bingo.first_row}")
     private int firstRowPrize;
 
+    @Value("${app.bingo.event_date}")
+    private String eventDate;
+
     @Value("${app.bingo.second_row}")
     private int secondRowPrize;
 
@@ -103,6 +106,7 @@ public class PageController {
         model.addAttribute("developer2Insta", developer2Insta);
         model.addAttribute("developer2Experience", developer2Experience);
         model.addAttribute("firstFivePrize", firstFivePrize);
+        model.addAttribute("eventDate", eventDate);
         return "home";
     }
 

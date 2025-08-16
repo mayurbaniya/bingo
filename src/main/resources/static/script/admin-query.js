@@ -70,6 +70,11 @@ $(document).ready(function() {
         // Fetch all registrations to calculate stats
         $.get('/api/admin/registrations?page=0&size=1000')
             .done(function(response) {
+                const totalRegistrations = response.data.totalRegistrations;
+                const paymentConfirmedCount = response.data.paymentConfirmedCount;
+                const paymentPendingCount = response.data.paymentPendingCount;
+                const totalConfirmedAmount = response.data.totalConfirmedAmount;
+
                 const registrations = response.data.registrations;
                 totalItems = registrations.length;
                 totalConfirmed = registrations.filter(r => r.paymentConfirmed).length;
@@ -81,10 +86,10 @@ $(document).ready(function() {
                     .reduce((sum, reg) => sum + (reg.amountPaid || 0), 0);
                 
                 // Update UI
-                $('#total-registrations').text(totalItems);
-                $('#confirmed-count').text(totalConfirmed);
-                $('#pending-count').text(totalPending);
-                $('#total-amount').text('₹' + totalAmount);
+                $('#total-registrations').text(totalRegistrations);
+                $('#confirmed-count').text(paymentConfirmedCount);
+                $('#pending-count').text(paymentPendingCount);
+                $('#total-amount').text('₹' + totalConfirmedAmount);
             })
             .fail(handleError);
     }

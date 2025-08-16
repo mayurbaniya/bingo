@@ -40,14 +40,36 @@ public class AdminService {
     private final ModelMapper mapper;
     private final EventsRepository eventsRepository;
 
-
     public Response getAllRegistrations(Boolean paymentConfirmed, int page, int size, String status) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
 
+        long totalRegistrations;
+        long paymentConfirmedCount;
+        long paymentPendingCount;
+        long totalConfirmedAmount;
+
         Page<EntryForm> formsPage;
         if (paymentConfirmed != null) {
+            if (!status.equals("1") && !status.equals("0")) {
+                return utils.errorResponse("Invalid status parameter. Use '1' for Active or '0' for Deleted.");
+            }
+
+            totalRegistrations = entryFormRepository.getTotalRegistrations();
+            paymentConfirmedCount = entryFormRepository.getPaymentConfirmedCount();
+            paymentPendingCount = entryFormRepository.getPaymentPendingCount();
+            totalConfirmedAmount = entryFormRepository.getTotalConfirmedAmount();
+
             formsPage = entryFormRepository.findByPaymentConfirmedAndStatus(paymentConfirmed, pageable, status);
         } else {
+            if (!status.equals("1") && !status.equals("0")) {
+                return utils.errorResponse("Invalid status parameter. Use '1' for Active or '0' for Deleted.");
+            }
+
+            totalRegistrations = entryFormRepository.getTotalRegistrations();
+            paymentConfirmedCount = entryFormRepository.getPaymentConfirmedCount();
+            paymentPendingCount = entryFormRepository.getPaymentPendingCount();
+            totalConfirmedAmount = entryFormRepository.getTotalConfirmedAmount();
+
             formsPage = entryFormRepository.findAllByStatus(pageable, status);
         }
 
@@ -56,6 +78,13 @@ public class AdminService {
         responseData.put("currentPage", formsPage.getNumber());
         responseData.put("totalItems", formsPage.getTotalElements());
         responseData.put("totalPages", formsPage.getTotalPages());
+        responseData.put("totalRegistrations", totalRegistrations);
+        responseData.put("paymentConfirmedCount", paymentConfirmedCount);
+        responseData.put("paymentPendingCount", paymentPendingCount);
+        responseData.put("totalConfirmedAmount", totalConfirmedAmount);
+
+
+        System.out.println("total payment -> "+ totalConfirmedAmount);
 
         return Response.builder()
                 .status(AppConstant.SUCCESS)
@@ -144,12 +173,12 @@ public class AdminService {
     public Response addEvent(EventRequest request) {
         try {
 
-           Events event =  mapper.map(request, Events.class);
-           eventsRepository.save(event);
-           return Response.builder()
-                   .status(AppConstant.SUCCESS)
-                   .msg("Event added successfully")
-                   .build();
+            Events event = mapper.map(request, Events.class);
+            eventsRepository.save(event);
+            return Response.builder()
+                    .status(AppConstant.SUCCESS)
+                    .msg("Event added successfully")
+                    .build();
         } catch (Exception e) {
             // TODO: handle exception
         }
