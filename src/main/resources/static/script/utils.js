@@ -204,11 +204,24 @@ function showToast(message, type) {
     });
 }
 
-  function handleError(xhr) {
-        hidePageLoader();
-        const errorMessage = xhr.responseJSON && xhr.responseJSON.msg ? 
-            xhr.responseJSON.msg : 'An error occurred';
-        showToast(errorMessage, 'danger');
-    }
+function handleError(xhr) {
+    hidePageLoader();
+    const errorMessage = xhr.responseJSON && xhr.responseJSON.msg ?
+        xhr.responseJSON.msg : 'An error occurred';
+    showToast(errorMessage, 'danger');
+}
 
-   
+function logout() {
+    showConfirmBlockingModal("Are you sure you want to log out?", function () {
+        $.ajax({
+            url: '/admin/logout',
+            type: 'POST',
+            success: function () {
+                window.location.href = '/';
+            },
+            error: function () {
+                alert('Error logging out');
+            }
+        });
+    });
+}
