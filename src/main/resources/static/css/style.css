@@ -1011,3 +1011,127 @@
     font-size: 0.9rem;
   }
 }
+
+
+/* New CSS for registration section */
+.registration-card {
+    border: 2px solid var(--gold);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #fff9e6, #ffffff);
+}
+
+.prize-summary {
+    background: rgba(245, 231, 161, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px dashed var(--gold);
+}
+
+.prize-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.prize-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.prize-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--saffron);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.prize-details {
+    flex: 1;
+}
+
+.prize-type {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.prize-amount {
+    font-weight: 700;
+    color: var(--saffron);
+    font-size: 1.1rem;
+}
+
+.total-prize {
+    background: linear-gradient(to right, var(--saffron), var(--gold));
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.ticket-price {
+    font-size: 1.2rem;
+    color: var(--saffron);
+}
+
+.input-group-text {
+    background: var(--light-gold);
+    border: 1px solid #e9ecef;
+}
+
+.ticket-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 12px;
+    padding: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+    max-width: 200px;
+}
+
+.counter-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--light);
+    border: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.counter-btn:hover {
+    background: var(--saffron);
+    color: white;
+}
+
+.counter-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 20px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.terms-list {
+    padding-left: 20px;
+}
+
+.terms-list li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
