@@ -144,6 +144,7 @@ public class UserService {
             entryForm.setImagePath(filePath);
             entryForm.setRegistrationId(generateUniqueRegistrationId()); // 🔹 New ID
             entryForm.setStatus("1");
+            entryForm.setAmountPaid(perTicketPrice * pending.getTickets());
             entryFormRepository.save(entryForm);
             pendingRegistrations.remove(key);
 

@@ -46,17 +46,18 @@ $(document).ready(function() {
     // Confirm payment handler
     $(document).on('click', '.btn-confirm', function() {
         const id = $(this).data('id');
-        if (confirm('Are you sure you want to confirm this payment?')) {
+        showConfirmBlockingModal('Are you sure you want to confirm this payment?', function() {
             confirmPayment(id);
-        }
+        });
+
     });
 
     // Delete registration handler
     $(document).on('click', '.btn-delete', function() {
         const id = $(this).data('id');
-        if (confirm('Are you sure you want to delete this registration?')) {
+        showConfirmBlockingModal('Are you sure you want to delete this registration?', function() {
             deleteRegistration(id);
-        }
+        });
     });
 
     // View payment proof handler
@@ -124,8 +125,8 @@ $(document).ready(function() {
             })
             .fail(handleError);
     }
+         
 
-    // Function to render registrations table
     function renderTable(registrations) {
         const $tbody = $('#registrationsBody');
         $tbody.empty();

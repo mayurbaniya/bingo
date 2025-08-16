@@ -69,7 +69,7 @@ document.getElementById('confirmPaymentBtn').addEventListener('click', function 
     document.getElementById('payment-section').style.display = 'block';
     document.getElementById('user-section').style.display = 'none';
     // Scroll to payment section
-    document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('payment-section').scrollIntoView({behavior: 'smooth',  block: 'start',  });
   } else {
 
     registerAndPayLater();
@@ -255,40 +255,41 @@ function resetPaymentChoiceModal() {
     document.getElementById('paymentFile').value = ''; 
 }
 
-// Add this to query.js
-// Add this to query.js
-document.addEventListener('DOMContentLoaded', function() {
-  // Scroll to registration when button is clicked
-  document.querySelectorAll('.register-scroll-btn').forEach(button => {
-    button.addEventListener('click', function() {
-      // Add smooth scrolling animation
-      const targetSection = document.getElementById('user-section');
-      const offset = 100; // Adjust scroll offset if needed
+  // document.querySelectorAll('.register-scroll-btn').forEach(button => {
+  //   button.addEventListener('click', function() {
+  //     // Add smooth scrolling animation
+  //     const targetSection = document.getElementById('user-section');
+  //     const offset = 100; // Adjust scroll offset if needed
       
-      window.scrollTo({
-        top: targetSection.offsetTop - offset,
-        behavior: 'smooth'
-      });
-    });
-  });
-  
-  // Adjust carousel height on load and resize
-  function adjustCarouselHeight() {
-    const carousel = document.getElementById('gameCarousel');
-    if (carousel) {
-      const activeItem = carousel.querySelector('.carousel-item.active');
-      if (activeItem) {
-        carousel.style.height = activeItem.offsetHeight + 'px';
-      }
+  //     window.scrollTo({
+  //       top: targetSection.offsetTop - offset,
+  //       behavior: 'smooth'
+  //     });
+  //   });
+  // });
+
+
+			
+$(document).ready(function () {
+    function setCarouselHeight() {
+        var maxHeight = 0
+        $('.carousel-inner .game-card').css('height', 'auto');
+
+        $('#gameCarousel .carousel-item').each(function () {
+            var itemHeight = $(this).outerHeight(true); // true includes margin
+            if (itemHeight > maxHeight) {
+                maxHeight = itemHeight;
+            }
+        });
+
+        $('.carousel-inner .game-card').css('height', maxHeight + 'px');
     }
-  }
-  
-  // Initial adjustment
-  adjustCarouselHeight();
-  
-  // Adjust on window resize
-  window.addEventListener('resize', adjustCarouselHeight);
-  
-  // Adjust when carousel slides
-  document.getElementById('gameCarousel')?.addEventListener('slid.bs.carousel', adjustCarouselHeight);
-});j
+
+    $(window).on('load', function () {
+        setCarouselHeight();
+    });
+
+    $(window).on('resize', function () {
+        setCarouselHeight();
+    });
+});

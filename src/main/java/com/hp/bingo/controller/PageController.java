@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -147,7 +149,7 @@ public class PageController {
             HttpSession session) {
 
         // Replace with real validation
-        if ("admin".equals(username) && "admin".equals(password)) {
+        if ("admin".equals(username) && "andachowk".equals(password)) {
             session.setAttribute("isAdminLoggedIn", true);
             return "redirect:/admin/dashboard";
         }
@@ -160,9 +162,10 @@ public class PageController {
     }
 
 
-    @GetMapping("/admin/logout")
-        public String logout(HttpSession session) {
-            session.invalidate();
-            return "redirect:/admin/login";
+    @PostMapping("/admin/logout")
+    @ResponseBody
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "Logged out successfully";
     }
 }
