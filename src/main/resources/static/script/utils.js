@@ -1,6 +1,6 @@
 const adminBaseUrl = `${window.AppConfig.baseUrl}/api/admin`;
 const userBaseUrl = `${window.AppConfig.baseUrl}/api/users`;
-const houseEntryFee = 50;
+const houseEntryFee = `${window.AppConfig.housiePrice}`;
 
 function showBlockingModal(message, callback) {
     // Create modal elements
