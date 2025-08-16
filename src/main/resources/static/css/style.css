@@ -1135,3 +1135,20 @@
     margin-bottom: 12px;
     line-height: 1.6;
 }
+
+
+.event-date-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: var(--saffron);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+
+

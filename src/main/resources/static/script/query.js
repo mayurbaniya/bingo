@@ -291,4 +291,4 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Adjust when carousel slides
   document.getElementById('gameCarousel')?.addEventListener('slid.bs.carousel', adjustCarouselHeight);
-});
+});j

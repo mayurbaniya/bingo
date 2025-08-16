@@ -24,7 +24,7 @@
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="#">
         <i class="fas fa-om me-2"></i>
-        <span class="fw-bold">Ganapati Housie</span>
+        <span class="fw-bold"></span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -70,8 +70,7 @@
 
         <div class="row justify-content-center">
             <div class="col-lg-9">
-                <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+               
                         <!-- Housie Game Highlight -->
                         <div class="carousel-item active">
                             <div class="game-card card h-100">
@@ -82,6 +81,10 @@
                                             <div class="image-overlay">
                                                 <h3>Traditional Housie</h3>
                                                 <p>Play with friends &amp; family!</p>
+                                            </div>
+                                            <div class="event-date-badge">
+                                                <i class="fas fa-calendar-alt me-1"></i>
+                                                <span th:text="${eventDate}">31st August 2025</span>
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +116,7 @@
                                                             <div class="prize-amount">₹<span th:text="${thirdRowPrize}">500</span></div>
                                                         </div>
                                                         <div class="align-items-center d-flex justify-content-between my-1 prize-card py-1 px-2">
-                                                            <div class="prize-type">First Five</div>
+                                                            <div class="prize-type">Lucky Five</div>
                                                             <div class="prize-amount">₹<span th:text="${firstFivePrize}">500</span></div>
                                                         </div>
                                                     </div>
@@ -141,195 +144,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Nimbu chammach Game Highlight -->
-                        <div class="carousel-item">
-                            <div class="game-card card h-100">
-                                <div class="row g-0 h-100">
-                                    <div class="col-md-6 d-flex">
-                                        <div class="game-image">
-                                            <img src="gallery/nimbu.png" alt="Lemon and Spoon Race (Nimbu Chamach) Game"
-                                                class="h-100 img-fluid object-fit-cover w-100">
-                                            <div class="image-overlay">
-                                                <h3>Lemon and Spoon Race (Nimbu Chamach)</h3>
-                                                <p>Play with friends &amp; family!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 d-flex">
-                                        <div class="card-body p-4 d-flex flex-column">
-                                            <div>
-                                                <h3 class="card-title text-gold mb-3">Lemon and Spoon Race (Nimbu Chamach)</h3>
-                                                <p class="card-text mb-4">
-                                                    Test your focus and steady hand in the ultimate balancing act—the Lemon and Spoon Race! A delightful challenge for kids and adults alike, this game is a true test of concentration. Can you make it to the finish line without dropping the lemon? Come and find out!   
-                                                </p>
-                                                
-                                                <div class="prize-section mb-4">
-                                                    <h5 class="text-saffron mb-3"><i class="fas fa-trophy me-2"></i> Winning Prizes</h5>
-                                                    <div class="flex-wrap">
-                                                        <div class="align-items-center d-flex justify-content-between my-1 prize-card py-1 px-2">
-                                                            <div class="prize-type">First prize</div>
-                                                            <div class="prize-amount">₹100</div>
-                                                        </div>
-                                                        <div class="align-items-center d-flex justify-content-between my-1 prize-card py-1 px-2">
-                                                            <div class="prize-type">Second Prize</div>
-                                                            <div class="prize-amount">₹50</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="game-stats d-flex justify-content-between mb-4">
-                                                    <div class="stat-item">
-                                                        <i class="fas fa-users me-2"></i>
-                                                        <span>10+ Players</span>
-                                                    </div>
-                                                    <div class="stat-item">
-                                                        <i class="fas fa-ticket-alt me-2"></i>
-                                                        <span>₹10 per ticket</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="mt-auto">
-                                                <button class="btn btn-outline-secondary w-100 py-3" 
-                                                        data-bs-toggle="modal" data-bs-target="#onSpotModal">
-                                                    Register On Spot <i class="fas fa-map-marker-alt ms-2"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Sack Race Game Highlight -->
-                        <div class="carousel-item">
-                            <div class="game-card card h-100">
-                                <div class="row g-0 h-100">
-                                    <div class="col-md-6 d-flex">
-                                        <div class="game-image">
-                                            <img src="gallery/sackrace.png" alt="Sack Race Game"
-                                                class="h-100 img-fluid object-fit-cover w-100">
-                                            <div class="image-overlay">
-                                                <h3>Sack Race</h3>
-                                                <p>Play with friends &amp; family!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 d-flex">
-                                        <div class="card-body p-4 d-flex flex-column">
-                                            <div>
-                                                <h3 class="card-title text-gold mb-3">Sack Race</h3>
-                                                <p class="card-text mb-4">
-                                                    Hop, skip, and jump your way to victory in our exciting Sack Race! A timeless classic for all ages, this game is all about balance, speed, and a good sense of humor. It's a guaranteed way to share some laughs and create lasting memories during the festival.
-                                                </p>
-                                                
-                                                <div class="prize-section mb-4">
-                                                    <h5 class="text-saffron mb-3"><i class="fas fa-trophy me-2"></i> Winning Prizes</h5>
-                                                    <div class="flex-wrap">
-                                                        <div class="align-items-center d-flex justify-content-between my-1 prize-card py-1 px-2">
-                                                            <div class="prize-type">First prize</div>
-                                                            <div class="prize-amount">Exciting Gift</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="game-stats d-flex justify-content-between mb-4">
-                                                    <div class="stat-item">
-                                                        <i class="fas fa-users me-2"></i>
-                                                        <span>10+ Players</span>
-                                                    </div>
-                                                    <div class="stat-item">
-                                                        <i class="fas fa-ticket-alt me-2"></i>
-                                                        <span>Free ticket</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="mt-auto">
-                                                <button class="btn btn-outline-secondary w-100 py-3" 
-                                                        data-bs-toggle="modal" data-bs-target="#onSpotModal">
-                                                    Register On Spot <i class="fas fa-map-marker-alt ms-2"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- matki fod Game Highlight -->
-                        <div class="carousel-item">
-                            <div class="game-card card h-100">
-                                <div class="row g-0 h-100">
-                                    <div class="col-md-6 d-flex">
-                                        <div class="game-image">
-                                            <img src="gallery/matkifod.png" alt="Matki Fod Game"
-                                                class="h-100 img-fluid object-fit-cover w-100">
-                                            <div class="image-overlay">
-                                                <h3>Matki Fod</h3>
-                                                <p>Play with friends &amp; family!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 d-flex">
-                                        <div class="card-body p-4 d-flex flex-column">
-                                            <div>
-                                                <h3 class="card-title text-gold mb-3">Matki Fod</h3>
-                                                <p class="card-text mb-4">
-                                                    Experience the thrill and excitement of Matki Fod! This traditional game is a highlight of the festival, symbolizing the playful spirit of Lord Krishna. Cheer on the participants as they try to break the pot and share in the collective joy and celebration. It's a spectacle you won't want to miss!
-                                                </p>
-                                                
-                                                <div class="prize-section mb-4">
-                                                    <h5 class="text-saffron mb-3"><i class="fas fa-trophy me-2"></i> Winning Prizes</h5>
-                                                    <div class="flex-wrap">
-                                                        <div class="align-items-center d-flex justify-content-between my-1 prize-card py-1 px-2">
-                                                            <div class="prize-type">First Prize</div>
-                                                            <div class="prize-amount">₹100</div>
-                                                        </div>
-                                                        <div class="align-items-center d-flex justify-content-between my-1 prize-card py-1 px-2">
-                                                            <div class="prize-type">Second Prize</div>
-                                                            <div class="prize-amount">₹50</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="game-stats d-flex justify-content-between mb-4">
-                                                    <div class="stat-item">
-                                                        <i class="fas fa-users me-2"></i>
-                                                        <span>10+ Players</span>
-                                                    </div>
-                                                    <div class="stat-item">
-                                                        <i class="fas fa-ticket-alt me-2"></i>
-                                                        <span>₹10 per ticket</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="mt-auto">
-                                                <button class="btn btn-outline-secondary w-100 py-3" 
-                                                        data-bs-toggle="modal" data-bs-target="#onSpotModal">
-                                                    Register On Spot <i class="fas fa-map-marker-alt ms-2"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Carousel Controls -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -394,6 +208,11 @@
                         <div class="col-lg-5 mb-4 mb-lg-0">
                             <div class="prize-summary h-100">
                                 <h4 class="text-center mb-4">Prize Structure</h4>
+
+                                <div class="total-prize mt-4 mb-4 p-3 text-center">
+                                    <div class="mb-2">Total Prize Money</div>
+                                    <div class="display-5 fw-bold">₹5000</div>
+                                </div>
                                 
                                 <div class="prize-item">
                                     <div class="prize-icon">
@@ -435,10 +254,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="total-prize mt-4 p-3 text-center">
-                                    <div class="mb-2">Total Prize Money</div>
-                                    <div class="display-5 fw-bold">₹5000</div>
-                                </div>
+
                                 
                                 <div class="ticket-price text-center mt-4">
                                     <i class="fas fa-ticket-alt me-2"></i>
@@ -655,12 +471,12 @@
                     <div class="card-body p-4">
                         <h5 class="mb-4"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Venue Address</h5>
                         <p class="mb-4" th:text="${pendolAddress}">
-                            Shree Siddhivinayak Temple Hall<br>Prabhadevi, Mumbai<br>Maharashtra 400025
+                            Near. Shubhash Kirana Store, Hajaripahad Nagpur, Maharashtra 440007
                         </p>
 
                         <h5 class="mb-4"><i class="fas fa-clock me-2 text-primary"></i> Event Timing</h5>
                         <p class="mb-0" th:text="${eventsTiming}">
-                            7th September 2023<br>6:00 PM to 9:00 PM
+                          8 PM - 10 PM
                         </p>
                     </div>
                 </div>
@@ -669,7 +485,7 @@
                 <div class="card h-100">
                     <div class="card-body p-4">
                         <h5 class="mb-4"><i class="fas fa-envelope me-2 text-primary"></i> Contact Information</h5>
-                        <p class="mb-3"><i class="fas fa-phone me-2"></i> <span th:text="${phoneNumber}">+91 98765 43210</span></p>
+                        <p class="mb-3"><i class="fas fa-phone me-2"></i> <span th:text="${phoneNumber}">+91 00000 00000</span></p>
                         <p class="mb-4"><i class="fas fa-envelope me-2"></i> <span th:text="${email}">info@ganapatihousie.com</span></p>
 
                         <h5 class="mb-4"><i class="fas fa-user me-2 text-primary"></i> Organizing Committee</h5>
@@ -688,18 +504,9 @@
     <div class="container pt-5">
         <div class="row">
             <div class="col-md-6 mb-4 mb-md-0">
-                <h5 class="mb-4">Ganapati Housie</h5>
+                <h5 class="mb-4">Ekdant Ganesh Utsav Mandal</h5>
                 <p>Experience the joy of traditional housie in the divine presence of Lord Ganesha. Join us for an evening of
                     fun, devotion, and community bonding.</p>
-            </div>
-            <div class="col-md-6 text-md-end">
-                <h5 class="mb-4">Follow Us</h5>
-                <div class="d-flex justify-content-md-end">
-                    <a href="#" class="text-white me-3 fs-4"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-white me-3 fs-4"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-white me-3 fs-4"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-white fs-4"><i class="fab fa-youtube"></i></a>
-                </div>
             </div>
         </div>
         
@@ -716,13 +523,13 @@
                     <div class="d-flex flex-column flex-md-row justify-content-md-end">
                         <div class="me-md-3 mb-2 mb-md-0">
                             <span class="text-light opacity-75 small" th:text="${developer1Name}">Developer 1</span>
-                            <a :href="${developer1Github}" class="text-light opacity-75 ms-2" target="_blank">
+                            <a :href="${developer1Insta}" class="text-light opacity-75 ms-2" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                         <div>
                             <span class="text-light opacity-75 small" th:text="${developer2Name}">Developer 2</span>
-                            <a :href="${developer2Github}" class="text-light opacity-75 ms-2" target="_blank">
+                            <a :href="${developer2Insta}" class="text-light opacity-75 ms-2" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </div>
