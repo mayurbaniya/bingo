@@ -92,6 +92,7 @@ public class PageController {
         model.addAttribute("firstRowPrize", firstRowPrize);
         model.addAttribute("secondRowPrize", secondRowPrize);
         model.addAttribute("thirdRowPrize", thirdRowPrize);
+        model.addAttribute("luckyFivePrize", firstFivePrize);
         model.addAttribute("fullHousePrize", fullHousePrize);
         model.addAttribute("perTicketPrice", perTicketPrice);
         model.addAttribute("pendolAddress", pendolAddress);
