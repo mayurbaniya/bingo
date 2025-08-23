@@ -16,6 +16,12 @@
         --light: #f8f9fc;
         --dark: #5a5c69;
     }
+   body {
+        background: linear-gradient(135deg, var(--light-gold) 0%, #fff9e6 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--dark);
+    }
+
 
     .loading-overlay {
         position: fixed;
@@ -146,15 +152,7 @@
         border-color: var(--primary);
     }
 
-    body {
-        background: linear-gradient(135deg, var(--light-gold) 0%, #fff9e6 100%);
-        min-height: 100vh;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: var(--dark);
-        overflow-x: hidden;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,50 Q40,30 50,50 T80,50" fill="none" stroke="%23d4af37" stroke-width="0.5" opacity="0.1"/></svg>');
-        background-size: 200px;
-    }
+
 
     .navbar {
         background: linear-gradient(to right, var(--saffron), var(--gold));
@@ -365,7 +363,6 @@
         background: linear-gradient(to right, var(--saffron), var(--dark));
         color: white;
         padding: 40px 0 20px;
-        margin-top: 60px;
         position: relative;
         overflow: hidden;
     }
@@ -825,330 +822,330 @@
 
 
     /* Game Highlights Section */
-   /* Game Highlights Section */
-#game-highlights {
-  background: linear-gradient(135deg, rgba(255, 249, 230, 0.7) 0%, rgba(255, 255, 255, 0.9) 100%);
-  position: relative;
-  overflow: hidden;
-}
+    /* Game Highlights Section */
+    #game-highlights {
+        background: linear-gradient(135deg, rgba(255, 249, 230, 0.7) 0%, rgba(255, 255, 255, 0.9) 100%);
+        position: relative;
+        overflow: hidden;
+    }
 
-#game-highlights::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,20 Q50,0 70,20 Q80,10 90,30 Q100,40 80,60 Q50,80 20,60 Q0,40 10,30 Q20,10 30,20 Z" fill="%23D4AF37" opacity="0.1"/></svg>');
-  background-size: 200px;
-  opacity: 0.2;
-  z-index: 0;
-}
+    #game-highlights::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,20 Q50,0 70,20 Q80,10 90,30 Q100,40 80,60 Q50,80 20,60 Q0,40 10,30 Q20,10 30,20 Z" fill="%23D4AF37" opacity="0.1"/></svg>');
+        background-size: 200px;
+        opacity: 0.2;
+        z-index: 0;
+    }
 
-.game-card {
-  height: 450px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  position: relative;
-  z-index: 1;
-}
+    .game-card {
+        height: 450px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        position: relative;
+        z-index: 1;
+    }
 
-.game-image {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-}
+    .game-image {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+    }
 
-.game-image img {
-  /* width: 482px !important;
+    .game-image img {
+        /* width: 482px !important;
   height: 575px !important; */
-  object-fit: fill;
-  transition: transform 0.5s ease;
-}
+        object-fit: fill;
+        transition: transform 0.5s ease;
+    }
 
-.game-card:hover .game-image img {
-  transform: scale(1.05);
-}
+    .game-card:hover .game-image img {
+        transform: scale(1.05);
+    }
 
-.image-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  color: white;
-  padding: 20px 15px 10px;
-  text-align: center;
-}
+    .image-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        color: white;
+        padding: 20px 15px 10px;
+        text-align: center;
+    }
 
-.image-overlay h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
+    .image-overlay h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
 
-.text-gold {
-  color: var(--gold);
-  position: relative;
-  display: inline-block;
-}
+    .text-gold {
+        color: var(--gold);
+        position: relative;
+        display: inline-block;
+    }
 
-.text-gold::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: var(--saffron);
-}
+    .text-gold::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: var(--saffron);
+    }
 
-.text-saffron {
-  color: var(--saffron);
-  font-weight: 600;
-}
+    .text-saffron {
+        color: var(--saffron);
+        font-weight: 600;
+    }
 
-.prize-card {
-  background: rgba(255, 153, 51, 0.1);
-  border: 1px solid rgba(255, 153, 51, 0.3);
-  border-radius: 10px;
-  padding: 8px 12px;
-  margin: 0 5px 5px 0;
-  text-align: center;
-  flex: 1;
-  min-width: 120px;
-}
+    .prize-card {
+        background: rgba(255, 153, 51, 0.1);
+        border: 1px solid rgba(255, 153, 51, 0.3);
+        border-radius: 10px;
+        padding: 8px 12px;
+        margin: 0 5px 5px 0;
+        text-align: center;
+        flex: 1;
+        min-width: 120px;
+    }
 
-.prize-type {
-  font-size: 0.9rem;
-  color: var(--dark);
-  font-weight: 500;
-}
+    .prize-type {
+        font-size: 0.9rem;
+        color: var(--dark);
+        font-weight: 500;
+    }
 
-.prize-amount {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--saffron);
-}
+    .prize-amount {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--saffron);
+    }
 
-.game-stats {
-  padding: 12px 15px;
-  background: rgba(245, 231, 161, 0.2);
-  border-radius: 10px;
-  margin-top: 10px;
-}
+    .game-stats {
+        padding: 12px 15px;
+        background: rgba(245, 231, 161, 0.2);
+        border-radius: 10px;
+        margin-top: 10px;
+    }
 
-.stat-item {
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-}
+    .stat-item {
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+    }
 
-.stat-item i {
-  color: var(--saffron);
-}
+    .stat-item i {
+        color: var(--saffron);
+    }
 
-.register-scroll-btn {
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1.1rem;
-  letter-spacing: 0.5px;
-  border-radius: 12px;
-}
+    .register-scroll-btn {
+        transition: all 0.3s ease;
+        font-weight: 600;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        border-radius: 12px;
+    }
 
-.register-scroll-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(255, 153, 51, 0.4);
-}
+    .register-scroll-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 153, 51, 0.4);
+    }
 
-/* Responsive adjustments */
-@media (max-width: 992px) {
-  .game-card {
-    height: auto;
-  }
-  
-  .game-image {
-    height: 350px;
-  }
-  
-  .prize-card {
-    min-width: 100px;
-    padding: 6px 10px;
-  }
-}
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .game-card {
+            height: auto;
+        }
 
-@media (max-width: 768px) {
-  .game-image {
-    height: 300px;
-  }
-  
-  .prize-card {
-    min-width: 80px;
-    font-size: 0.85rem;
-  }
-  
-  .prize-amount {
-    font-size: 0.95rem;
-  }
-}
+        .game-image {
+            height: 350px;
+        }
 
-@media (max-width: 576px) {
-  .game-image {
-    height: 250px;
-  }
-  
-  .prize-card {
-    min-width: 70px;
-    padding: 5px 8px;
-  }
-  
-  .prize-type {
-    font-size: 0.8rem;
-  }
-  
-  .prize-amount {
-    font-size: 0.9rem;
-  }
-}
+        .prize-card {
+            min-width: 100px;
+            padding: 6px 10px;
+        }
+    }
 
+    @media (max-width: 768px) {
+        .game-image {
+            height: 300px;
+        }
 
-/* New CSS for registration section */
-.registration-card {
-    border: 2px solid var(--gold);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    background: linear-gradient(135deg, #fff9e6, #ffffff);
-}
+        .prize-card {
+            min-width: 80px;
+            font-size: 0.85rem;
+        }
 
-.prize-summary {
-    background: rgba(245, 231, 161, 0.2);
-    border-radius: 12px;
-    padding: 25px;
-    border: 1px dashed var(--gold);
-}
+        .prize-amount {
+            font-size: 0.95rem;
+        }
+    }
 
-.prize-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-}
+    @media (max-width: 576px) {
+        .game-image {
+            height: 250px;
+        }
 
-.prize-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
+        .prize-card {
+            min-width: 70px;
+            padding: 5px 8px;
+        }
 
-.prize-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--saffron);
-    color: white;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    margin-right: 15px;
-}
+        .prize-type {
+            font-size: 0.8rem;
+        }
 
-.prize-details {
-    flex: 1;
-}
-
-.prize-type {
-    font-weight: 600;
-    color: var(--dark);
-}
-
-.prize-amount {
-    font-weight: 700;
-    color: var(--saffron);
-    font-size: 1.1rem;
-}
-
-.total-prize {
-    background: linear-gradient(to right, var(--saffron), var(--gold));
-    color: white;
-    border-radius: 10px;
-    font-weight: 600;
-}
-
-.ticket-price {
-    font-size: 1.2rem;
-    color: var(--saffron);
-}
-
-.input-group-text {
-    background: var(--light-gold);
-    border: 1px solid #e9ecef;
-}
-
-.ticket-counter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    border-radius: 12px;
-    padding: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e9ecef;
-    max-width: 200px;
-}
-
-.counter-btn {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    background: var(--light);
-    border: none;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.counter-btn:hover {
-    background: var(--saffron);
-    color: white;
-}
-
-.counter-value {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0 20px;
-    min-width: 40px;
-    text-align: center;
-}
-
-.terms-list {
-    padding-left: 20px;
-}
-
-.terms-list li {
-    margin-bottom: 12px;
-    line-height: 1.6;
-}
+        .prize-amount {
+            font-size: 0.9rem;
+        }
+    }
 
 
-.event-date-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: 600;
-    color: var(--saffron);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-}
+    /* New CSS for registration section */
+    .registration-card {
+        border: 2px solid var(--gold);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(135deg, #fff9e6, #ffffff);
+    }
+
+    .prize-summary {
+        background: rgba(245, 231, 161, 0.2);
+        border-radius: 12px;
+        padding: 25px;
+        border: 1px dashed var(--gold);
+    }
+
+    .prize-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        margin-bottom: 15px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+    }
+
+    .prize-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .prize-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--saffron);
+        color: white;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        margin-right: 15px;
+    }
+
+    .prize-details {
+        flex: 1;
+    }
+
+    .prize-type {
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    .prize-amount {
+        font-weight: 700;
+        color: var(--saffron);
+        font-size: 1.1rem;
+    }
+
+    .total-prize {
+        background: linear-gradient(to right, var(--saffron), var(--gold));
+        color: white;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    .ticket-price {
+        font-size: 1.2rem;
+        color: var(--saffron);
+    }
+
+    .input-group-text {
+        background: var(--light-gold);
+        border: 1px solid #e9ecef;
+    }
+
+    .ticket-counter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        border-radius: 12px;
+        padding: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        border: 1px solid #e9ecef;
+        max-width: 200px;
+    }
+
+    .counter-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: var(--light);
+        border: none;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    .counter-btn:hover {
+        background: var(--saffron);
+        color: white;
+    }
+
+    .counter-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 20px;
+        min-width: 40px;
+        text-align: center;
+    }
+
+    .terms-list {
+        padding-left: 20px;
+    }
+
+    .terms-list li {
+        margin-bottom: 12px;
+        line-height: 1.6;
+    }
 
 
+    .event-date-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        color: var(--saffron);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+    }
 
+
+ 

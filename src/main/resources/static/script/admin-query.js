@@ -256,3 +256,123 @@ function showReceipt(imageUrl) {
 function hideReceipt() {
     document.getElementById("receiptOverlay").style.display = "none";
 }
+
+async function generateConfirmedListPDF() {
+    showPageLoader();
+    try {
+        // --- 1. Fetch Data ---
+        const response = await fetch("/api/admin/get-confirmed-list");
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+        }
+        const json = await response.json();
+        const data = json.data || [];
+
+      
+
+        // --- 3. Prepare Table Data ---
+        const tableBody = [
+            ["S.No", "Name", "Phone", "Email", "Registration ID", "Tickets", "Amount Paid", "Payment Receipt"].map(h => ({ text: h, style: "tableHeader" }))
+        ];
+        data.forEach((user, index) => {
+            tableBody.push([
+                { text: (index + 1).toString(), style: 'cellCenter' },
+                { text: user.name, style: 'cellText' },
+                { text: user.phone, style: 'cellText' },
+                { text: user.email, style: 'cellText' },
+                { text: user.registrationId, style: 'cellText' },
+                { text: user.tickets.toString(), style: 'cellCenter' },
+                { text: `₹${parseFloat(user.amountPaid || 0).toFixed(2)}`, style: 'cellRight' },
+                { text: "View Receipt", link: user.imagePath, style: 'cellLink' }
+            ]);
+        });
+        
+        // --- 4. Calculate Totals ---
+        const totalTickets = data.reduce((sum, user) => sum + (user.tickets || 0), 0);
+        const totalAmount = data.reduce((sum, user) => sum + parseFloat(user.amountPaid || 0), 0);
+        if (data.length > 0) {
+            tableBody.push([
+                { text: "TOTAL", colSpan: 5, style: "totalLabel", alignment: "left" }, {}, {},
+                { text: `Registration  ${data.length}`, style: "totalValue", alignment: "right" },{},
+                { text: totalTickets.toString(), style: "totalValue", alignment: "center" },
+                { text: `₹${totalAmount.toFixed(2)}`, style: "totalValue", alignment: "right" },
+                { text: "", style: "totalValue" }
+            ]);
+        }
+
+        // --- 5. Define PDF Document ---
+        const docDefinition = {
+            pageOrientation: 'landscape',
+            pageMargins: [40, 80, 40, 60],
+
+            // MODIFIED: Simplified header with only text
+            header: {
+                stack: [
+                    { text: "Confirmed Users Report", style: "header" },
+                    { text: "Ganpati Festival Registration", style: "subheader" }
+                ],
+                margin: [40, 25, 40, 0] // Aligns the text with page margins
+            },
+
+            footer: function(currentPage, pageCount) {
+                return {
+                    columns: [
+                        { text: `Report generated on: ${new Date().toLocaleString('en-IN')}`, alignment: 'left', style: 'footer' },
+                        { text: `Page ${currentPage.toString()} of ${pageCount}`, alignment: 'right', style: 'footer' }
+                    ],
+                    margin: [40, 0, 40, 0]
+                };
+            },
+
+            content: [
+                {
+                    table: {
+                        headerRows: 1,
+                        widths: ['auto', '*', 'auto', '*', 'auto', 'auto', 'auto', 'auto'],
+                        body: tableBody
+                    },
+                    layout: {
+                        fillColor: function (rowIndex) {
+                            if (rowIndex === 0 || rowIndex > data.length) return null;
+                            return (rowIndex % 2 === 0) ? '#FFFFFF' : '#f5f5f5';
+                        }
+                    }
+                },
+                {
+                    text: "* This is an auto-generated report.",
+                    style: "footerNote",
+                    margin: [0, 20, 0, 0]
+                }
+            ],
+            
+            styles: {
+                header: { fontSize: 20, bold: true, color: '#ff6600' },
+                subheader: { fontSize: 14, color: '#2c3e50' },
+                tableHeader: { bold: true, fontSize: 11, color: 'white', fillColor: '#2c3e50', alignment: 'center', margin: [0, 5, 0, 5] },
+                cellText: { margin: [0, 4, 0, 4] },
+                cellCenter: { margin: [0, 4, 0, 4], alignment: 'center' },
+                cellRight: { margin: [0, 4, 0, 4], alignment: 'right' },
+                cellLink: { margin: [0, 4, 0, 4], alignment: 'center', color: '#1a73e8', decoration: 'underline' },
+                totalLabel: { bold: true, fontSize: 11, fillColor: '#2c3e50', color: 'white', margin: [0, 5, 0, 5] },
+                totalValue: { bold: true, fontSize: 11, fillColor: '#2c3e50', color: 'white', margin: [0, 5, 0, 5] },
+                footer: { fontSize: 9, color: '#666666', italics: true },
+                footerNote: { fontSize: 9, color: '#666666', italics: true }
+            },
+            defaultStyle: {
+                font: 'Roboto',
+                fontSize: 10,
+                columnGap: 20
+            }
+        };
+
+        // --- 6. Generate and Download PDF ---
+        const fileName = `Confirmed_Users_Report_${new Date().toISOString().slice(0, 10)}.pdf`;
+        pdfMake.createPdf(docDefinition).download(fileName);
+        
+    } catch (err) {
+        console.error("Error generating PDF:", err);
+        alert("Failed to generate PDF. Check the console for more details.");
+    } finally {
+        hidePageLoader();
+    }
+}

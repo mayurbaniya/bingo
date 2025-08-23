@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.modelmapper.ModelMapper;
@@ -109,6 +110,8 @@ public class AdminService {
                 .build();
     }
 
+
+
     @SuppressWarnings("deprecation")
     public Response deleteRegistration(Long id) {
         if (!entryFormRepository.existsById(id)) {
@@ -183,5 +186,25 @@ public class AdminService {
             // TODO: handle exception
         }
         return Response.builder().build();
+    }
+
+
+    public Response getConfirmedUserList(){
+         try {
+
+            List<EntryForm> paymentConfirmedtList = entryFormRepository.findByPaymentConfirmedTrueAndStatus("1");
+            return Response.builder()
+                    .data(paymentConfirmedtList)
+                    .status(AppConstant.SUCCESS)
+                    .msg("Fetched Confirmed users successfully")
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.builder()
+            .err(e.getLocalizedMessage())
+            .msg("Failed to fetch confirmed users!!")
+            .status(AppConstant.FAILED).build();
+        }
+        
     }
 }

@@ -1,5 +1,6 @@
 package com.hp.bingo.repo;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -43,4 +44,7 @@ public interface EntryFormRepository extends JpaRepository<EntryForm, Long> {
     // ✅ 4) Total amount (payment confirmed only)
     @Query("SELECT COALESCE(SUM(e.amountPaid), 0) FROM EntryForm e WHERE e.paymentConfirmed = true AND e.status = '1'")
     long getTotalConfirmedAmount();
+
+    List<EntryForm> findByPaymentConfirmedTrueAndStatus(String status);
+
 }
