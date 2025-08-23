@@ -136,7 +136,7 @@ $(document).ready(function() {
             return;
         }
 
-        registrations.forEach(reg => {
+        registrations.forEach((reg,index) => {
             const date = new Date(reg.createdAt);
             const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
             const statusText = reg.paymentConfirmed ? 'Confirmed' : 'Pending';
@@ -144,7 +144,7 @@ $(document).ready(function() {
 
             const row = `
                 <tr>
-                    <td>${reg.id}</td>
+                    <td>${index+1}</td>
                     <td>${reg.name}</td>
                     <td>${reg.email}</td>
                     <td>${reg.phone}</td>
@@ -169,7 +169,7 @@ $(document).ready(function() {
                 </tr>
             `;
             $tbody.append(row);
-        });
+        }); 
     }
 
     // Function to render pagination
