@@ -160,7 +160,7 @@ function registerAndUploadPayment(file) {
                             Verification may take up to <strong>2 hours</strong>. You will receive a confirmation email once it’s processed.<br><br>
                             For faster confirmation, you can message us on WhatsApp by clicking the icon below.
                           </p>
-                          <a class="whatsapp-btn" href="https://wa.me/918123456789" target="_blank">
+                          <a class="whatsapp-btn" href="https://wa.me/918793723317" target="_blank">
                             <img width="24" height="24" class="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
                             Message Us
                           </a>`;
