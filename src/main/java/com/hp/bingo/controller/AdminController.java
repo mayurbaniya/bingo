@@ -42,6 +42,11 @@ public class AdminController {
         return ResponseEntity.ok(adminService.deleteRegistration(id));
     }
 
+    @GetMapping("/get-confirmed-list")
+    public ResponseEntity<?> getConfirmedUserList() {
+        return ResponseEntity.ok(adminService.getConfirmedUserList());
+    }
+
     @GetMapping("/search")
     public ResponseEntity<Response> searchRegistrations(
             @RequestParam String query,

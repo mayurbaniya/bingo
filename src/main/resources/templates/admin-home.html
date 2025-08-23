@@ -7,7 +7,7 @@
     <title>Admin Dashboard - Ganapati Housie</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 
 <body>
@@ -22,16 +22,45 @@
         </div>
     </div>
     <div class="content">
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="/">
-                    <i class="fas fa-om fa-2xl"></i>
-                    <span class="fw-bold"></span>
-                </a>
-                <button onclick="logout();" class="align-items-center btn btn-primary d-flex navbar-brand shadow"><span>Logout </span><i class="fa-arrow-right-to-bracket fas mx-1"></i></button>
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <i class="fas fa-om"></i>
+                <span>Ganpati Festival</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-cog me-1"></i> Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog me-2"></i> System Settings</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-database me-2"></i> Manage Data</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="generatePdfBtn"><i class="fas fa-file-pdf me-2"></i> Generate Confirmed List</a></li>
+                        </ul>
+                    </li> -->
+                    <li class="nav-item ms-2">
+                        <button class="btn btn-download btn-nav" onclick="generateConfirmedListPDF()" id="quickDownloadBtn">
+                            <i class="fas fa-download me-1"></i> Generate Confirmed List
+                        </button>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <button onclick="logout();" class="btn btn-logout btn-nav">
+                            <span>Logout </span><i class="fas fa-arrow-right-from-bracket ms-1"></i>
+                        </button>
+                    </li>
+                </ul>
             </div>
-        </nav>
-
+        </div>
+    </nav>
 
         <div class="container-fluid px-3 px-lg-4 py-4">
             <!-- Page Heading -->
@@ -178,7 +207,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="/script/utils.js"></script>
     <script src="/script/admin-query.js"></script>
 </div>
