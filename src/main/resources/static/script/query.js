@@ -129,7 +129,7 @@ function registerAndGetQr() {
 
       }else{
         showBlockingModal(response.msg, function () {
-          location.reload(true);
+          location.href = "/";
         });
       }
     },
@@ -166,11 +166,11 @@ function registerAndUploadPayment(file) {
                           </a>`;
 
         showBlockingModal(message, function () {
-          location.reload(true);
+          location.href = "/";
         });
       }else{
          showBlockingModal(response.msg, function () {
-          location.reload(true);
+          location.href = "/";
         });
       }
     },
@@ -198,7 +198,7 @@ function registerAndPayLater() {
     success: function (response) {
 
       showBlockingModal(response.msg, function () {
-        location.reload(true);
+        location.href = "/";
       });
 
     },

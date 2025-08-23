@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     // Initialize the dashboard
     loadStatistics();
-    loadRegistrations();
+    
 
     // Filter change handler
     $('.filter-option').click(function(e) {
@@ -71,6 +71,7 @@ $(document).ready(function() {
         // Fetch all registrations to calculate stats
         $.get('/api/admin/registrations?page=0&size=1000')
             .done(function(response) {
+                loadRegistrations();
                 const totalRegistrations = response.data.totalRegistrations;
                 const paymentConfirmedCount = response.data.paymentConfirmedCount;
                 const paymentPendingCount = response.data.paymentPendingCount;
