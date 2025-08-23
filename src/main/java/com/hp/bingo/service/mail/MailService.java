@@ -27,7 +27,7 @@ public class MailService {
     @Value("${mail.dev}")
     private String devMail;
 
-    public boolean sendMail(String to, String subject, String body, boolean disableCC){
+    public boolean sendMail(String to, String subject, String body, boolean disableCC) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmailId);
         message.setTo(to);
@@ -39,22 +39,22 @@ public class MailService {
         try {
             javaMailSender.send(message);
             return true;
-        }catch (Exception e){
-            log.error("Error while sending mail : {} ", e.getMessage() );
+        } catch (Exception e) {
+            log.error("Error while sending mail : {} ", e.getMessage());
             return false;
         }
     }
 
-    public boolean sendMIMEMail(String to, String subject, String body, boolean disableCC){
+    public boolean sendMIMEMail(String to, String subject, String body, boolean disableCC) {
         try {
-            
+
             MimeMessage message = javaMailSender.createMimeMessage();
 
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
             helper.setFrom(fromEmailId);
             helper.setTo(to);
             helper.setCc(disableCC ? "abc89328@test.example" : adminMail);
-            helper.setBcc(disableCC ? "abc89328@test.example" :  devMail);
+            helper.setBcc(disableCC ? "abc89328@test.example" : devMail);
             helper.setSubject(subject);
             helper.setText(body, true);
 
@@ -63,39 +63,62 @@ public class MailService {
             return true;
 
         } catch (Exception e) {
-            
+
             log.error("Error while sending mail: {}", e.getMessage());
             return false;
         }
 
-       
-
     }
 
-    public void sendMIMEMailWithAttachment(String to, String subject, String body, 
-                                    String attachmentName, ByteArrayInputStream inputStream) {
-    try {
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
-        
-        helper.setTo(to);
-        helper.setSubject(subject);
-        helper.setText(body);
-        helper.setCc(devMail);
-        helper.setBcc(adminMail);;
+    public boolean sendMIMEMailWithAttachment(String to, String subject, String body,
+            byte[] attachment, String attachmentName, boolean disableCC) {
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        if (inputStream != null) {
-            byte[] pdfBytes = inputStream.readAllBytes();
-            helper.addAttachment(attachmentName, new ByteArrayResource(pdfBytes), "application/pdf");
+            helper.setFrom(fromEmailId);
+            helper.setTo(to);
+            helper.setCc(disableCC ? "abc89328@test.example" : adminMail);
+            helper.setBcc(disableCC ? "abc89328@test.example" : devMail);
+            helper.setSubject(subject);
+            helper.setText(body, true);
+
+            // Add PDF attachment
+            helper.addAttachment(attachmentName, new ByteArrayResource(attachment));
+
+            javaMailSender.send(message);
+            return true;
+        } catch (Exception e) {
+            log.error("Error sending email: {}", e.getMessage());
+            return false;
         }
-                javaMailSender.send(message);
-        // return false;
-    } catch (Exception e) {
-        log.error("Email sending failed", e);
-        // return false;
-
     }
-}
 
-    
+    // public boolean sendMIMEMailWithAttachment(String to, String subject, String
+    // body,
+    // String attachmentName, ByteArrayInputStream inputStream) {
+    // try {
+    // MimeMessage message = javaMailSender.createMimeMessage();
+    // MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+    // helper.setTo(to);
+    // helper.setSubject(subject);
+    // helper.setText(body);
+    // helper.setCc(devMail);
+    // helper.setBcc(adminMail);;
+
+    // if (inputStream != null) {
+    // byte[] pdfBytes = inputStream.readAllBytes();
+    // helper.addAttachment(attachmentName, new ByteArrayResource(pdfBytes),
+    // "application/pdf");
+    // }
+    // javaMailSender.send(message);
+    // return false;
+    // } catch (Exception e) {
+    // log.error("Email sending failed", e);
+    // return false;
+
+    // }
+    // }
+
 }
