@@ -1,7 +1,5 @@
 package com.hp.bingo.service.mail;
 
-import java.io.ByteArrayInputStream;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.SimpleMailMessage;
@@ -54,7 +52,7 @@ public class MailService {
             helper.setFrom(fromEmailId);
             helper.setTo(to);
             helper.setCc(disableCC ? "abc89328@test.example" : adminMail);
-            helper.setBcc(disableCC ? "abc89328@test.example" : devMail);
+            helper.setCc(disableCC ? "abc89328@test.example" : devMail);
             helper.setSubject(subject);
             helper.setText(body, true);
 
@@ -79,7 +77,7 @@ public class MailService {
             helper.setFrom(fromEmailId);
             helper.setTo(to);
             helper.setCc(disableCC ? "abc89328@test.example" : adminMail);
-            helper.setBcc(disableCC ? "abc89328@test.example" : devMail);
+            helper.setCc(disableCC ? "abc89328@test.example" : devMail);
             helper.setSubject(subject);
             helper.setText(body, true);
 
