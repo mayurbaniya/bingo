@@ -1,6 +1,9 @@
 package com.hp.bingo.service.mail;
 
 import java.io.ByteArrayOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -83,6 +86,97 @@ public class MailTemplates {
 
         return emailService.sendMIMEMail(entryForm.getEmail(), subject, body, false);
     }
+
+// In MailTemplates.java
+public boolean sendAdminInsightEmail(Map<String, Object> insights) {
+    String subject = "📊 Daily Registration Insights - " + insights.get("date");
+    
+    String body = "<!DOCTYPE html>" +
+            "<html lang='en'>" +
+            "<head>" +
+            "    <meta charset='UTF-8'>" +
+            "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+            "    <title>Admin Insights</title>" +
+            "    <style>" +
+            "        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; background-color: #f9f9f9; }" +
+            "        .container { max-width: 600px; margin: 0 auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 0 20px rgba(0,0,0,0.1); }" +
+            "        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; color: white; }" +
+            "        .header h1 { margin: 0; font-size: 24px; }" +
+            "        .content { padding: 30px; }" +
+            "        .stats-container { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 30px; }" +
+            "        .stat-box { background: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 20px; flex-basis: 48%; box-sizing: border-box; text-align: center; }" +
+            "        .stat-value { font-size: 24px; font-weight: bold; color: #667eea; margin: 10px 0; }" +
+            "        .stat-label { font-size: 14px; color: #6c757d; }" +
+            "        .section-title { font-size: 18px; color: #495057; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-top: 30px; }" +
+            "        .footer { background: #f8f9fa; padding: 20px; text-align: center; color: #6c757d; font-size: 14px; }" +
+            "        .highlight { color: #28a745; font-weight: bold; }" +
+            "        .divider { border-top: 1px solid #e9ecef; margin: 20px 0; }" +
+            "    </style>" +
+            "</head>" +
+            "<body>" +
+            "    <div class='container'>" +
+            "        <div class='header'>" +
+            "            <h1>🎯 Ganapati Festival Admin Insights</h1>" +
+            "            <p>Daily Registration Report for " + insights.get("date") + "</p>" +
+            "        </div>" +
+            "        <div class='content'>" +
+            "            <h2 class='section-title'>📈 Yesterday's Performance</h2>" +
+            "            <div class='stats-container'>" +
+            "                <div class='stat-box'>" +
+            "                    <div class='stat-label'>New Registrations</div>" +
+            "                    <div class='stat-value'>" + insights.get("dailyRegistrations") + "</div>" +
+            "                </div>" +
+            "                <div class='stat-box'>" +
+            "                    <div class='stat-label'>Payments Confirmed</div>" +
+            "                    <div class='stat-value'>" + insights.get("dailyConfirmed") + "</div>" +
+            "                </div>" +
+            "                <div class='stat-box'>" +
+            "                    <div class='stat-label'>Payments Pending</div>" +
+            "                    <div class='stat-value'>" + insights.get("dailyPending") + "</div>" +
+            "                </div>" +
+            "                <div class='stat-box'>" +
+            "                    <div class='stat-label'>Amount Collected</div>" +
+            "                    <div class='stat-value'>₹" + insights.get("dailyAmount") + "</div>" +
+            "                </div>" +
+            "            </div>" +
+            "            <div class='divider'></div>" +
+            "            <h2 class='section-title'>📊 Overall Statistics</h2>" +
+            "            <div class='stats-container'>" +
+            "                <div class='stat-box'>" +
+            "                    <div class='stat-label'>Total Registrations</div>" +
+            "                    <div class='stat-value'>" + insights.get("totalRegistrations") + "</div>" +
+            "                </div>" +
+            "                <div class='stat-box'>" +
+            "                    <div class='stat-label'>Total Confirmed</div>" +
+            "                    <div class='stat-value highlight'>" + insights.get("totalConfirmed") + "</div>" +
+            "                </div>" +
+            "                <div class='stat-box'>" +
+            "                    <div class='stat-label'>Total Pending</div>" +
+            "                    <div class='stat-value'>" + insights.get("totalPending") + "</div>" +
+            "                </div>" +
+            "                <div class='stat-box'>" +
+            "                    <div class='stat-label'>Total Amount</div>" +
+            "                    <div class='stat-value highlight'>₹" + insights.get("totalAmount") + "</div>" +
+            "                </div>" +
+            "            </div>" +
+            "            <div class='divider'></div>" +
+            "            <p><strong>Next Steps:</strong></p>" +
+            "            <ul>" +
+            "                <li>Review and verify " + insights.get("dailyPending") + " pending payments</li>" +
+            "                <li>Follow up with participants who haven't completed payment</li>" +
+            "                <li>Prepare for today's registrations and payments</li>" +
+            "            </ul>" +
+            "        </div>" +
+            "        <div class='footer'>" +
+            "            <p>This is an automated report generated on " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + "</p>" +
+            "            <p>Ganapati Festival Management System</p>" +
+            "        </div>" +
+            "    </div>" +
+            "</body>" +
+            "</html>";
+    
+    return emailService.sendMIMEMail(adminMail, subject, body, false);
+}
 
 
     public boolean sendPaymentConfirmationEmail(EntryForm entryForm) {

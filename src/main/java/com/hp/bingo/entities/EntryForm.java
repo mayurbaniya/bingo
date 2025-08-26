@@ -1,12 +1,14 @@
 package com.hp.bingo.entities;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,7 @@ public class EntryForm {
     private String email;
     private int tickets;
     private String imagePath; // NEW: local path of payment proof
+    private LocalDateTime createdDate;
 
 
     @Column(unique = true, length = 6, nullable = false)
@@ -37,4 +40,9 @@ public class EntryForm {
     private String razorpaySignature;
     private Instant createdAt = Instant.now();
     private boolean paymentConfirmed = false;
+
+    @PrePersist
+    protected void onCreate() {
+        createdDate = LocalDateTime.now();
+    }
 }

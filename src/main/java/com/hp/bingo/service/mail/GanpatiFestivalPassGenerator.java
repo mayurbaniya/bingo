@@ -22,37 +22,6 @@ import java.io.InputStream;
 
 public class GanpatiFestivalPassGenerator {
 
- 
-
-//     public static void main(String[] args) {
-//         System.out.println("Generating Ganpati Festival Pass...");
-
-//         // Create sample data
-//         EntryForm form = new EntryForm();
-//         form.setName("Amit Sharma");
-//         form.setTickets(4);
-//         form.setPhone("9876543210");
-//         form.setEmail("amit.sharma@example.com");
-//         form.setRegistrationId("GANPATI-2025-12345");
-//         form.setAmountPaid(800); // Assuming ₹200 per ticket
-
-//         try {
-//             //     ByteArrayOutputStream baos = generateFestivalPass(form);
-//             ByteArrayOutputStream baos = generateTicket(form);
-
-//             // Save to file for testing
-//             java.nio.file.Files.write(
-//                     java.nio.file.Paths.get("Ganpati_Premium_Pass.pdf"),
-//                     baos.toByteArray()
-//             );
-
-//             System.out.println("Successfully generated: Ganpati_Premium_Pass.pdf");
-//         } catch (Exception e) {
-//             System.err.println("Error generating pass:");
-//             e.printStackTrace();
-//         }
-//     }
-
     public static ByteArrayOutputStream generateTicket(EntryForm entryForm) throws Exception {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PdfWriter writer = new PdfWriter(baos);

@@ -22,8 +22,11 @@ public class MailService {
     private String fromEmailId;
     @Value("${mail.admin}")
     private String adminMail;
+    @Value("${mail.admin2}")
+    private String adminMail2;
     @Value("${mail.dev}")
     private String devMail;
+
 
     public boolean sendMail(String to, String subject, String body, boolean disableCC) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -53,6 +56,7 @@ public class MailService {
             helper.setTo(to);
             helper.setCc(disableCC ? "abc89328@test.example" : adminMail);
             helper.setCc(disableCC ? "abc89328@test.example" : devMail);
+            helper.setCc(disableCC ? "abc89328@test.example" : adminMail2);
             helper.setSubject(subject);
             helper.setText(body, true);
 
@@ -78,6 +82,7 @@ public class MailService {
             helper.setTo(to);
             helper.setCc(disableCC ? "abc89328@test.example" : adminMail);
             helper.setCc(disableCC ? "abc89328@test.example" : devMail);
+            helper.setCc(disableCC ? "abc89328@test.example" : adminMail2);
             helper.setSubject(subject);
             helper.setText(body, true);
 
@@ -91,32 +96,4 @@ public class MailService {
             return false;
         }
     }
-
-    // public boolean sendMIMEMailWithAttachment(String to, String subject, String
-    // body,
-    // String attachmentName, ByteArrayInputStream inputStream) {
-    // try {
-    // MimeMessage message = javaMailSender.createMimeMessage();
-    // MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-    // helper.setTo(to);
-    // helper.setSubject(subject);
-    // helper.setText(body);
-    // helper.setCc(devMail);
-    // helper.setBcc(adminMail);;
-
-    // if (inputStream != null) {
-    // byte[] pdfBytes = inputStream.readAllBytes();
-    // helper.addAttachment(attachmentName, new ByteArrayResource(pdfBytes),
-    // "application/pdf");
-    // }
-    // javaMailSender.send(message);
-    // return false;
-    // } catch (Exception e) {
-    // log.error("Email sending failed", e);
-    // return false;
-
-    // }
-    // }
-
 }

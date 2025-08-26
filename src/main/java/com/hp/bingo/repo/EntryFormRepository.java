@@ -1,6 +1,8 @@
 package com.hp.bingo.repo;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -47,4 +49,14 @@ public interface EntryFormRepository extends JpaRepository<EntryForm, Long> {
 
     List<EntryForm> findByPaymentConfirmedTrueAndStatus(String status);
 
+     // ✅ New method: Get yesterday's registration stats
+    @Query("SELECT " +
+           "COUNT(e) as totalRegistrations, " +
+           "SUM(CASE WHEN e.paymentConfirmed = true THEN 1 ELSE 0 END) as confirmedPayments, " +
+           "SUM(CASE WHEN e.paymentConfirmed = false THEN 1 ELSE 0 END) as pendingPayments, " +
+           "COALESCE(SUM(CASE WHEN e.paymentConfirmed = true THEN e.amountPaid ELSE 0 END), 0) as totalAmount " +
+           "FROM EntryForm e " +
+           "WHERE e.createdDate >= :startDate AND e.createdDate < :endDate AND e.status = '1'")
+    Map<String, Long> getDailyStats(@Param("startDate") LocalDateTime startDate, 
+                                   @Param("endDate") LocalDateTime endDate);
 }
