@@ -150,7 +150,7 @@ public class PageController {
             HttpSession session) {
 
         // Replace with real validation
-        if ("admin".equals(username) && "andachowk".equals(password)) {
+        if ("admin".equals(username) && "andachowkgawkgawk#1".equals(password)) {
             session.setAttribute("isAdminLoggedIn", true);
             return "redirect:/admin/dashboard";
         }
