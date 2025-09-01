@@ -259,7 +259,7 @@ function hideReceipt() {
 }
 async function generateConfirmedListPDF() {
 
-        loadPdfMakeLibraries( ()=>{
+        loadPdfMakeLibraries( async ()=>{
         showPageLoader();
         try {
             // --- 1. Fetch Data ---
